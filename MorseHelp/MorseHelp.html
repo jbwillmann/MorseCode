@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Morse Code Program Help</title>
+        <meta name="description" content="Morse Code Help.">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        
+        <h1>Morse Code Help</h1>
+        
+        <h2>1.0 Summary of Help contents</h2>
+        
+        <p>
+            This helps file was built using Brackets, an open-source code editor. I used Brackets built in index.html and main.css files that Brackets uses to introduce the program when it is first launched, as templates for this document. Its a good way to start.
+        </p>
+
+        <p>
+            I originally published this program on the MatLab side in 2009. This version is a major rewrite with many new features. A few of the more notable changes are summarized below:
+        </p>
+        <ul>
+            <li>Completely redesigned user interface.</li>
+            <li>Improved audio sound.</li>
+            <li>Multiple users with preferences saved between sessions.</li>
+            <li>Automatically saving new window positions upon closing.</li>
+            <li>Consistent naming conventions for variables, functions and callbacks.</li>
+            <li>Use of multiple function files to better organize the program and make maintenance simpler.</li>
+            <li>Use of .mat files to save important preferences and other control parameters.</li>
+            <li>Better and more detailed Help and comments.</li>
+            <li>And many more.</li>
+        </ul>
+  
+        <h3>2.0 About the Program</h3>
+        <p>
+            This program is a training aid to help the user improve their proficiency in receiving the Morse code. The program allows the user to generate Morse code in three ways: Transmit Alphabet, Transmit From File and Transmit From Keyboard. The code speed(rate of dots and dashes), word speed(period between words) and audio frequency of transmitted dots and dashes can be set separately for each user profile. These parameters can be adjusted through the Preferences drop down menu on the main window.
+        </p>
+        <p>
+            When the program is first launched, it starts with a default user. The default user parameters cannot be changed. In order to customize the experience, new users must be added. Then the code speed, word speed and frequency can be set as the user desires. This is done through the user preferences drop-down menu on the main  program window. In addition, under the preferences menu, is the ability to reset the program to its default state. This will erase any previously established users and their data and return the program to its original startup configuration.
+        </p>
+        <p>
+            When transmitting either a text file or the alphabet, the operator can pause the transmission at any time. When transmitting a file the user must first select a file to be transmitted. The transmission will stop when the end of the file is reached or the transmission is paused by the user. All text in the file is converted to upper case as it is being used and all extra spaces between words are all removed. When Transmitting Alphabet the user can select the alphabet content, whether it is transmitted sequentially or randomly, or whether to split the transmitted characters in groups of fixed or random sizes.       
+        </p>
+        <p>
+            When Transmit Keyboard is selected, a window opens showing the keyboard entries and transmitted data. All input is converted to caps and the only special keys accepted are backspace and escape. Backspace will delete the last keyboard input and Escape will clear all entries to start over. The inputted text is buffered and transmitted at the selected rates. 
+        </p>
+        <p> 
+            From the menu bar under Help, selecting "Code Table" will display the code table built into the program. There are 60 entries in the table with the last being a word space. Selecting Help will display this file in the MatLab browser. Selecting About will provide author details and version number.
+        </p>
+        
+        <h3>3.0 Screen Shots</h3>
+        <p>
+            In this section we review the user interface and discribe each of the program windows and its operation.
+        </p>
+        <h4>3.1 Main Program Screen</h4>
+        <p> 
+             This is the window that opens when the file morse.m is executed. Along the top is a drop down menu which allows you to change user preferences, select a .wav audio file for playback  or use the help system. In the center of the screen is the username and the selected user code speed and word speed. Along the bottom are three action buttons allowing the user to either transmit the alphabet, transmit from a saved file, or transmitted code directly from the keyboard.
+        </p>
+        <a href="screenshots/mainProgramWindow.png">
+            <img alt="A screenshot showing Main Program Screen" src="screenshots/mainProgramWindow.png"/ width="500">
+            
+        </a><h5>3.3.1 Drop Down Menu</h5>
+        <p>
+        The drop down menu on the main program figure has the following choices:
+        </p>
+        <li><em>Preferences</em>
+                <ul>
+                    <li>UserPreferences - Opens the User Preferences to allow the user to make changes or select a different user
+                    </li>
+                    <li>
+                    Window Preferences - Opens the Windows Preferences to allow the user to select save window position on exit
+                    </li>
+                    <li>
+                    Reset All Preferences - Deletes all added users and returns the program to its initial state.
+                    </li>
+                </ul>             . 
+            </li>
+            <li><em>File</em>
+                <ul>
+                    <li>Play Audio File - Opens a file selector to pick an audio (.wav) file for playback
+                    </li>
+                </ul>             . 
+            </li>
+            <li><em>Help</em>
+                <ul>
+                    <li>Code Table - Displays the Morse Code table built into the program.
+                    </li>
+                    <li>
+                    Help - Opens this file in the MatLab browser.
+                    </li>
+                    <li>
+                    About - Displays version and author information.
+                    </li>
+                </ul>             . 
+            </li>
+        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h4>3.2 User Preferences Screen</h4>
+        <p>
+            When User Preferences is selected from the Preferences Drop Down Menu on the main Screen, the window shown below opens. This displays the currently selected user at the top of the window. The drop down box labeled "Select a User" can be selected to allow you to "Add a New User" ot to select a user from the list displayed.  If a user is selected, that users preferences are displayed and can be edited if desired. After the editing is complete, select "Save" to save the changes. If the user selected is not the "Currently Selected User", then "Make Active" can be selected and the current user will be replaced with the new or changed user.  Also the selected user can be deleted if desired.  Note that the Default User cannot be deleted or edited. Depending on the task being performed, only certain of the action buttons along the bottom of the window are displayed or enabled.
+        </p>
+        <a href="screenshots/uaerPrefsWindow.png">
+            <img alt="A screenshot showing User Preferences" src="screenshots/userPrefsWindow.png"/ width="400">
+        </a>
+        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h4>3.3 Transmit from Alphabet Screen</h4>
+        <p>
+        When Transmit Alphabet is selected on the main screen, this window opens.
+        </p>
+        <a href="screenshots/transmitAlphabetWindow.png">
+            <img alt="A screenshot showing Transmit Alphabet" src="screenshots/transmitAlphabetWindow.png" />
+        </a>
+        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h5>3.3.1 Alphabet Preferences Screen</h4>
+        
+        <a href="screenshots/alphabetPreferencesWindow.png">
+            <img alt="A screenshot showing Alphabet Preferences" src="screenshots/alphabetPreferencesWindow.png" width="400"/>
+        </a>
+        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h4>3.4 Transmit From File Screen</h4>
+        
+        <a href="screenshots/transmitFileWindow.png">
+            <img alt="A screenshot showing Transmit Keyboard" src="screenshots/transmitFileWindow.png" />
+        </a>
+        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h4>3.5 Transmit From Ketboard Screen</h4>
+        
+        <a href="screenshots/transmitKeyboardWindow.png">
+            <img alt="A screenshot showing Transmit File" src="screenshots/transmitKeyboardWindow.png" />
+        </a>  
+        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+    <h3>4.0 File and Program Structure</h3>
+        <p>
+            The following screenshot shows the directury structure and all of the system files used by the program. In what follows we describe each of the files in detail.
+        </p>
+        
+
+        <a href="screenshots/directoryStructure.png">
+            <img alt="A screenshot showing Directory Structure" src="screenshots/directoryStructure.png" width="400"/>
+        </a>
+        
+        <ul>
+            <li><em>MorseHelp Directory:</em> This directory contains the MorseHelp.html and main.css files used to display the help in any browser. It also contains a screenshots sub-directory that contains all of the screen shots displayed by the help system.
+            </li>
+            
+            <li><em>ProgramData Directory:</em> This directory contains the two .mat files used by the program.
+                <ul>
+                    <li>PreferencesFile.mat contains all of the user and window preferences used by the program to manage all of the windows and user preferences data
+                    </li>
+                    <li>CodeTableFile.mat contains the audio samples using the user selected preferences for transmission by the program.  Whenever the user is changed or some of the currently selected user parameters are changed, this file is automatically regenerated.</li>
+                </ul>             . 
+            </li>
+            
+            <li><em>UserData Directory:</em> The UserData directory has a sub-directory for each user. There is a built-in user that is not changeable called the DefaultUser. This is the only user that shows when the system is first installed. As other users are added with their custom settings, then sub-directories with the new user name are added. Typically, this is where each user stores text files for transmission as well as any .wav files the user creates.
+            
+            </li>
+            <li><em>AlphabetPreferences:</em>
+            </li>
+            <li><em>BuildCodeTable.m:</em>
+            </li>
+            <li><em>CodeTableFile.mat:</em>
+            </li>
+            <li><em>CreatePrefsArray.m:</em>
+            </li>
+            <li><em>DeleteWarning.m:</em>
+            </li>
+            <li><em>FillCodeTable.m:</em>
+            </li>
+            <li><em>Morse.m:</em>
+            </li>
+            <li><em>PreferencesProcessing.m:</em>
+            </li>
+            <li><em>ProcessInputFile.m:</em>
+            </li>
+            <li><em>TransmitCode.m:</em>
+            </li>
+            <li><em>TransmitKeyboard.m:</em>
+            </li>
+            <li><em>WavePlay.m:</em>
+            </li>
+               
+        </ul>
+
+        <h3>Design of the Program</h3>
+        <p>
+            The core of the program is the CodeTable. The function BuildCodeTable creates a 60x4 cell array where the first 3 columns are text and contain the character, dots and dashes, dits and daws. The fourth column is reserved for a wave file that represents the Morse code for that character at the selected speed and audio frequency.
+            After the GUI is constricted, to initialize the program the function FillCodeTable is called. This function first calls BuildCodeTable to populate the first three columns of the CodeTable. Then this function builds the dots dashes and spaces for the selected code and word speed by calling the function MakeWave to build the wave file for a dot, dash and spaces. Then MakeCharacter is called to build the wave file for each character. This result is stored in the fourth column of the CodeTable for each of the character entries in the table.
+            When either the speed or frequency is changed, this process is repeated so there is a new CodeTable constructed to use with the new settings. The process of transmission consist of taking each character of the input stream and sending it to the standard audio output using waveplay. Because waveplay does not return until the sample is sent, when sending the alphabet or a loaded text string, the functions XmitAlphabetCallback and XmitFileCallback just loop through all of the characters until completed.
+            Transmitting from the keyboard is a bit more complicated. The XmitKbdCallback starts a timer task and opens a small modal window activating the KeyPressFunction which links to GetKeyCallback. At GetKeyCallback each keyboard entry is put into a 2xn cell array InputString. In row 1 is the character and in row 2 is the wave file for that character. This is continued until the operator presses escape. Then the character string 'end' in placed in the character slot and the keyboard entry process is terminated.
+            All the while this input is going on the timer task, TimerTaskCallback, is looking at the InputString to see if there is a new character. If there is, it is transmitted, and the program does not return until the transmission is complete. Then the timer task continues and repeats this process until it finds the string 'end' and then terminates.
+        </p>
+
+        
+    </body>
+</html>
+
