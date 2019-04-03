@@ -1,2 +1,2 @@
 # MorseCode
-MatLab profram to train Morse Code Users
+MatLab program to train Morse Code Users
