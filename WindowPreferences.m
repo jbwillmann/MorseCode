@@ -16,7 +16,7 @@ function WindowPreferences()
     windowHeight =  windowsPrefs{6,8};
     textFont = windowsPrefs{7,8};
 
-    displayString = ['Current Selected User:  ' glob.selectedUserName];
+    displayString = ['Selected User:  ' glob.selectedUserName];
     
 %% Create the figure and its contents -----------------------------
 % Create the new figure
