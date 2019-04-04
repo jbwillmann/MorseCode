@@ -4,7 +4,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
 % saved between sessions.
 
 % "Global" variables
-    glob.saveWindows = 0;       % set to 1 to save window position on close,
+    glob.saveWindows = 1;       % set to 1 to save window position on close,
     glob.scaleFactor = 1.;      % scale factor for all windows,
     glob.selectedUserIndex = 2;      % set to default user index,
     glob.userChanged = 1;       % Means we have to rebuild code table

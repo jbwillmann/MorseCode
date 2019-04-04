@@ -16,7 +16,6 @@ function TransmitAlphabet()
     end
     
 % Set up workspace variables.
-    userName = allUsersPrefs{1,activeUserIndex};
     alphaPrefs = allUsersPrefs{5,activeUserIndex};
     stopXmit = 0;
     firstTime = 0;
