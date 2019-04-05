@@ -37,7 +37,7 @@ function TransmitAlphabet()
     end
     
     if alphaPrefs.format == 1
-        alphaMode = 'Continuous';
+        alphaMode = 'Sequential';
     else
         alphaMode = 'Random';
     end
