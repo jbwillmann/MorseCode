@@ -1,5 +1,5 @@
 function codeTable = BuildCodeTable()
-%   Function to build initial codeTable cell array
+% Function to build initial codeTable cell array
     %   The columns in the codeTable are
     %   1   Code Character
     %   2   Dot's and dashes

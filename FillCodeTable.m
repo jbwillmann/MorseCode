@@ -1,7 +1,7 @@
 function  codeTable = FillCodeTable(codeSpeed, wordSpeed,...
                                 frequency, samplesPerCycle)
 % Creates the CodeTable and fills it with wave files based on the 
-% code and word rate
+% code and word rate and frequenct.
 
 %%  FillCodeTable Function ---------------------------------------
 % Get the initial CodeTable setup

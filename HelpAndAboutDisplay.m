@@ -15,7 +15,7 @@ function HelpAndAboutDisplay(val)
         % open('MorseHelp.pdf');                
         % This opens help in the system browser
         % path = cd;
-        % str = ['file:///' path '\MorseHelp.html'];
+        % str = ['file:///' path '\MorseHelp\MorseHelp.html'];
         % web(str,'-browser');
 
         case 2  % About
@@ -57,6 +57,6 @@ function HelpAndAboutDisplay(val)
                 'string',aboutString ...
             );
         
-    end  % end case 
+    end  % end switch 
     
 end % end HelpAndAboutDisplay
