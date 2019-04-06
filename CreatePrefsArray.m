@@ -19,22 +19,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     alphaPrefs.min = 0;         % group minimum size
     alphaPrefs.max = 0;         % group maximum size
 
-% Remove the old UserData directory and all files therein
-    dirToRemove = 'UserData';
-    dirRmStat = rmdir(dirToRemove, 's');
-                
-% Make a new directory with DefaultUser as a sub directory
-    newDir = 'UserData/DefaultUser';
-    dirMkStat = mkdir(newDir);
 
-% Code Groups
-    codeGroups = ['OVLH MYBL URXO HIZO VICT FINX SCXS HTYV IQNT UBML '...
-        'ABLB EJLN CYZB ZWCN JNDZ UTLZ KLAB DEFZ VNUW KFRE JICOY '...
-        'TXSTY 38Ø95 RDIHA JXTDZ OXYDW XPZSY RSPHD 89706 CUSPI'];
-
-    fid = fopen('UserData/DefaultUser/CodeGroups.txt', 'w');
-    fprintf(fid, codeGroups);
-    closeStat = fclose(fid);
     
 % Create allUsersPrefs cell array
     allUsersPrefs = cell(9,2);

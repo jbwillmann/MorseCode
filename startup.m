@@ -1,1 +1,2 @@
-disp("startup.m is automatically executing")
+% disp("startup.m is automatically executing")
+clc

@@ -2,37 +2,21 @@ function Morse()
 % This is the main program to start the process.
 
 %% Initilize the user variables -----------------------------------
-% First, test to see if the file PreferencesFile.mat is in the
-% current directory. If not, set some varables and create the file.
+% First, test to see if the PreferencesFile.mat file is in the
+% ProgramData directory. If not, set some varables and create the file.
     if exist('ProgramData/PreferencesFile.mat','file') == 0
-        % Create the default varable arrays allUsersPrefs, windowsPrefs
-        % and save the file.
-        [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray();
-        save('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
-            'windowsPrefs','glob');
-    else
-        % Load the existing file
-        load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
-            'windowsPrefs', 'glob');
-    end
-
-% Determine SelectedUser
-    isFound = 0;
-    for activeUserIndex = 2:size(allUsersPrefs,2)
-        if allUsersPrefs{9,activeUserIndex} == 1
-            isFound = 1;
-            break;
-        end
-    end
-    if isFound == 0
-        % Be sure there is a selected user. If not, select DefaultUser.
-        % This should not ever occur!
-        activeUserIndex = 2;
-        allUsersPrefs{9,activeUserIndex} = 1;
+        InitilizeProgram()
     end
     
-% Build the code table for the selected user
-    userName = allUsersPrefs{1,activeUserIndex};
+% Load the PreferencesFile.mat file
+    load('ProgramData/PreferencesFile.mat',...
+        'allUsersPrefs', 'windowsPrefs', 'glob');
+
+% Setup SelectedUser data
+    activeUserIndex = glob.selectedUserIndex;
+    userName = glob.selectedUserName;
+    
+% Build the code table for the selected user    
     codeSpeed = allUsersPrefs{2,activeUserIndex};
     wordSpeed = allUsersPrefs{3,activeUserIndex};
     frequency = allUsersPrefs{4,activeUserIndex};
