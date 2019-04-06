@@ -9,7 +9,6 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     glob.selectedUserIndex = 2;      % set to default user index,
     glob.selectedUserName = 'Default User';
 
-
 % Create alphabet transmit default preferences
     % 1 = Alphabet=26, 2 = +Numbers = 36, 3 = +Puncuation = 53,
     % 4 = +Special Characters = 59
@@ -18,8 +17,6 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     alphaPrefs.group = 1;       % 1 = no group ; 2 = groups
     alphaPrefs.min = 0;         % group minimum size
     alphaPrefs.max = 0;         % group maximum size
-
-
     
 % Create allUsersPrefs cell array
     allUsersPrefs = cell(9,2);

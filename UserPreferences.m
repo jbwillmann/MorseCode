@@ -19,23 +19,14 @@ function UserPreferences()
     allUserNames{2} = 'Add a New User';
     allUserNames(3:numUsers+1) = allUsersPrefs(1,2:numUsers);
     
-% Determine SelectedUser
-    for index = 2:numUsers
-        if allUsersPrefs{9,index} == 1
-            break;
-        end
-    end
-    
-% Index of the selected user
-    currentUserIndex = index;
-
-% Get selected user name
-    currentUserName = allUsersPrefs{1, currentUserIndex};
+ % Setup Current User data
+    currentUserIndex = glob.selectedUserIndex;
+    currentUserName = glob.selectedUserName; 
     
 % Initilize some variables
     tempNewUser = cell(9);
     inputCount = zeros(4,1);
-    workingUserName = '';
+    workingUserName = 'x';
     dropdownSelect = 0;
     userSelect = 0;
     codeSpeed = 0;
@@ -278,7 +269,6 @@ function UpdateUserCallback(src, ~, num)
                 set(CodeSpeedHandle,'string',allUsersPrefs{2, userSelect});
                 set(WordSpeedHandle,'string',allUsersPrefs{3, userSelect});
                 set(FrequencyHandle,'string',allUsersPrefs{4, userSelect});
-        %        set(UserNameHandle,'enable','on');
                 set(CodeSpeedHandle,'enable','on');
                 set(WordSpeedHandle,'enable','on');
                 set(FrequencyHandle,'enable','on');
@@ -390,10 +380,12 @@ function UpdateUserCallback(src, ~, num)
                 'allUsersPrefs', 'windowsPrefs','glob');
             
             % Update Morse.n if the current user is modified
-            if currentUserName ==  workingUserName
-                delete(gcf)
-                delete(MorseFigHandle)
-                run('Morse')
+            if dropdownSelect > 3
+                if currentUserIndex ==  userSelect
+                    delete(gcf)
+                    delete(MorseFigHandle)
+                    run('Morse')
+                end
             end
             
         case 6  % Make Active  

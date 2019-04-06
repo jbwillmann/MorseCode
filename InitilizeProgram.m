@@ -1,6 +1,6 @@
 function  InitilizeProgram()
-%InitilizeProgram - This function sets up all of the necessary default
-%program data.
+% InitilizeProgram - This function sets up all of the necessary default
+% program data.
 
 % Create the default varable arrays allUsersPrefs, windowsPrefs and glob
 % and save them to the PreferencesFile.mat file
