@@ -26,7 +26,6 @@ function UserPreferences()
 % Initilize some variables
     tempNewUser = cell(9);
     inputCount = zeros(4,1);
-    workingUserName = 'x';
     dropdownSelect = 0;
     userSelect = 0;
     codeSpeed = 0;
@@ -264,7 +263,6 @@ function UpdateUserCallback(src, ~, num)
             end
             
             if dropdownSelect > 3
-                workingUserName = allUsersPrefs{1, userSelect};
                 set(UserNameHandle,'string',allUsersPrefs{1, userSelect});
                 set(CodeSpeedHandle,'string',allUsersPrefs{2, userSelect});
                 set(WordSpeedHandle,'string',allUsersPrefs{3, userSelect});
