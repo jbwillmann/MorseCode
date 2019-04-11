@@ -15,7 +15,7 @@
         <h2>1.0 Summary of Help contents</h2>
         
         <p>
-            This helps file was built using Brackets, an open-source code editor. I used Brackets built in index.html and main.css files that Brackets uses to introduce the program when it is first launched, as templates for this document. Its a good way to start.
+            This helps file was built using Brackets, an open-source code editor. I used Brackets built-in index.html and main.css files that Brackets uses to introduce the program when it is first launched, as templates for this document. It's a good way to start.
         </p>
 
         <p>
@@ -35,16 +35,24 @@
   
         <h3>2.0 About the Program</h3>
         <p>
-            This program is a training aid to help the user improve their proficiency in receiving the Morse code. The program allows the user to generate Morse code in three ways: Transmit Alphabet, Transmit From File and Transmit From Keyboard. The code speed(rate of dots and dashes), word speed(period between words) and audio frequency of transmitted dots and dashes can be set separately for each user profile. These parameters can be adjusted through the Preferences drop down menu on the main window.
+            This program is a training aid to help the user improve their proficiency in receiving the Morse code. The program allows the user to generate Morse code in several ways:</p>
+         <ul>
+             <li>Transmit the alphabet.</li>
+             <li>Transmit from a text file.</li>
+             <li>Transmit from the keyboard.</li>
+             <li>Transmit a recorded .wav file.</li>
+         </ul>   
+         <p> 
+             The code speed (rate of dots and dashes), word speed (period between words) and audio frequency of transmitted dots and dashes can be set separately for each user profile. These parameters can be adjusted through the Preferences drop down menu on the main window.
         </p>
         <p>
-            When the program is first launched, it starts with a default user. The default user parameters cannot be changed. In order to customize the experience, new users must be added. Then the code speed, word speed and frequency can be set as the user desires. This is done through the user preferences drop-down menu on the main  program window. In addition, under the preferences menu, is the ability to reset the program to its default state. This will erase any previously established users and their data and return the program to its original startup configuration.
+            When the program is installed, it is initialized with a default user. The default user parameters cannot be changed. In order to customize the experience, new users must be added. Then the code speed, word speed and frequency can be set as the user desires. This is done through the user preferences drop-down menu on the main  program window. In addition, under the preferences menu is the ability to reset the program to its default state. This will erase any previously established users and their data and return the program to its original startup configuration.
         </p>
         <p>
-            When transmitting either a text file or the alphabet, the operator can pause the transmission at any time. When transmitting a file the user must first select a file to be transmitted. The transmission will stop when the end of the file is reached or the transmission is paused by the user. All text in the file is converted to upper case as it is being used and all extra spaces between words are all removed. When Transmitting Alphabet the user can select the alphabet content, whether it is transmitted sequentially or randomly, or whether to split the transmitted characters in groups of fixed or random sizes.       
+            When transmitting either a text file or the alphabet, the operator can pause the transmission at any time. When transmitting a file the user must first select a file to be transmitted. The transmission will stop when the end of the file is reached or the transmission is paused by the user. All text in the file is converted to upper case as it is being used and all extra spaces between words are removed. When Transmitting Alphabet the user can select the alphabet content, whether it is transmitted sequentially or randomly, or whether to split the transmitted characters in groups of fixed or random sizes.       
         </p>
         <p>
-            When Transmit Keyboard is selected, a window opens showing the keyboard entries and transmitted data. All input is converted to caps and the only special keys accepted are backspace and escape. Backspace will delete the last keyboard input and Escape will clear all entries to start over. The inputted text is buffered and transmitted at the selected rates. 
+            When Transmit Keyboard is selected, a window opens showing the keyboard entries and transmitted data. All input is converted to caps and the only special keys accepted are backspace, escape and F5. Backspace will delete the last keyboard input and Escape will clear all entries to start over. F5 is used to start and stop transmission. The imputed text is buffered and transmitted at the selected rates. 
         </p>
         <p> 
             From the menu bar under Help, selecting "Code Table" will display the code table built into the program. There are 60 entries in the table with the last being a word space. Selecting Help will display this file in the MatLab browser. Selecting About will provide author details and version number.
@@ -52,7 +60,7 @@
         
         <h3>3.0 Screen Shots</h3>
         <p>
-            In this section we review the user interface and discribe each of the program windows and its operation.
+            In this section we review the user interface and describe each of the program windows and its operation.
         </p>
         <h4>3.1 Main Program Screen</h4>
         <p> 
@@ -104,7 +112,7 @@
             <img alt="A screenshot showing User Preferences" src="screenshots/userPrefsWindow.png"/ width="400">
         </a>
         <p>
-            This window displays the currently selected user at the top of the window. The drop down box labeled "Select a User" can be selected to allow you to "Add a New User" ot to select a user from the list displayed.  If a user is selected, that users preferences are displayed and can be edited if desired. After the editing is complete, select "Save" to save the changes. If the user selected is not the "Currently Selected User", then "Make Active" can be selected and the current user will be replaced with the new or changed user.  Also the selected user can be deleted if desired.  Note that the Default User cannot be deleted or edited. Depending on the task being performed, only certain of the action buttons along the bottom of the window are displayed or enabled.
+            This window displays the currently selected user at the top of the window. The drop down box labeled "Select a User" can be selected to allow you to "Add a New User" or to select a user from the list displayed.  If a user is selected, that users preferences are displayed and can be edited if desired. After the editing is complete, select "Save" to save the changes. If the user selected is not the "Currently Selected User", then "Make Active" can be selected and the current user will be replaced with the new or changed user.  Also the selected user can be deleted if desired.  Note that the Default User cannot be deleted or edited. Depending on the task being performed, only certain of the action buttons along the bottom of the window are displayed or enabled.
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         <h4>3.3 Transmit from Alphabet Screen</h4>
@@ -130,7 +138,7 @@
             <img alt="A screenshot showing Transmit Keyboard" src="screenshots/transmitFileWindow.png" />
         </a>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h4>3.5 Transmit From Ketboard Screen</h4>
+        <h4>3.5 Transmit From Keyboard Screen</h4>
         
         <a href="screenshots/transmitKeyboardWindow.png">
             <img alt="A screenshot showing Transmit File" src="screenshots/transmitKeyboardWindow.png" />
@@ -138,7 +146,7 @@
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <h3>4.0 File and Program Structure</h3>
         <p>
-            The following screenshot shows the directury structure and all of the system files used by the program. In what follows we describe each of the files in detail.
+            The following screenshot shows the directory structure and all of the system files used by the program. In what follows we describe each of the files in detail.
         </p>
         
 

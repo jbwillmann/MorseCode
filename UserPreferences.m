@@ -3,7 +3,7 @@ function UserPreferences()
 % the main figure menu. A preferences window is opened and the user
 % can edit user preferences. A new User can also be created.
 % Unless the the user exits without making changes, the main program, 
-% Morse is restarted and reinitilized with the new changes.
+% Morse.m is restarted and reinitilized with the new changes.
 
 %% Initilize the user variables -----------------------------------
 % Get all the varables from the PreferencesFile.mat
