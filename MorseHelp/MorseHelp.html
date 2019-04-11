@@ -117,32 +117,72 @@
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         <h4>3.3 Transmit from Alphabet Screen</h4>
         <p>
-        When Transmit Alphabet is selected on the main screen, the window shown below opens.
+            When Transmit Alphabet is selected on the main screen, the window shown below opens.
         </p>
         <a href="screenshots/transmitAlphabetWindow.png">
             <img alt="A screenshot showing Transmit Alphabet" src="screenshots/transmitAlphabetWindow.png" />
         </a>
         <p>
-            
+            At the top of the window is the currently selected mode of operation.  This can be changed by selecting the Select Mode button at the bottom of the screen.  The various options are displayed in the Alphabet Preferences Screen described in section 3.3.1 below. 
+        </p>
+        <p>
+            Selecting the Start Tranxmission button will begin the transmission. The Start Transmision will change into a Pause Transmission button that can selected to pause the transmission. Sel;ecting Exit at any time will stop the transmission and close the window
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h5>3.3.1 Alphabet Preferences Screen</h4>
-        
+        <h5>3.3.1 Alphabet Preferences Screen</h5>
+        <p>
+            This csreen opens when Select Mode is selected from the Transmit Alphabet screen.
+        </p>
         <a href="screenshots/alphabetPreferencesWindow.png">
             <img alt="A screenshot showing Alphabet Preferences" src="screenshots/alphabetPreferencesWindow.png" width="400"/>
         </a>
+        <p>
+            The first drop down allows the selection of alphabet, alphabet plus numbers, alphabet plus numbers plus punctuation or alphabet plus numbers plus punctuation plus special characters,  See the code table to see all of the characters included.
+        </p>
+        <p>
+            The next dropdown provides a selection between transmitting sequentially from the table or a random selection from the selected character set.
+        </p>
+        <p>
+            Next the user can select whether the transmission specified above in broken into code groups with a single space between groups. If the Min and Max are the same then all groups will be that size.  If Min is less than Max the size of each group will be randomly selected between those two sizes.
+        </p>
+        <p>
+            When all choices are made and Save is selected, the Preferences file is updated and the TransmitAlphabet program is restarted to reflect the new settings.  Otherwise if Cancel is selected all entries are discarded and the window is closed.
+        </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         <h4>3.4 Transmit From File Screen</h4>
-        
+         <p>
+            When Transmit File is selected on the main screen, the window shown below opens.
+        </p>
         <a href="screenshots/transmitFileWindow.png">
             <img alt="A screenshot showing Transmit Keyboard" src="screenshots/transmitFileWindow.png" />
         </a>
+        <p>
+            Before you start you must first select a text file to playback. Selecting 'Select Input File' box will open a file selector window in the selected users Data directory.  You can navigate to any folder to select a file.  Once a file is selected that file name will be displayed at the top of the window.
+        </p>
+        <p>
+            If you wish to save an audio file of the transmission, check the bod 'Save Audio File' before starting the transmission. After completion, that file will be saved in the users Data directory.
+        </p>
+        <p>
+            To begin transmission select 'Start Transmission' and the text will be transmitted and displayed in the text areas above. After the transmission starts, the 'Start Transmission' button will change to a 'Pause Transmission'.
+        </p>
+        <p>
+            The transmission will stop when an EOF is reached on the input text file 'Pause Transmission' is selected, Selecting 'Exit' will terminate the process.
+        </p>
+        
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         <h4>3.5 Transmit From Keyboard Screen</h4>
-        
+         <p>
+            When Transmit Keyboard is selected on the main screen, the window shown below opens.
+        </p>
         <a href="screenshots/transmitKeyboardWindow.png">
             <img alt="A screenshot showing Transmit File" src="screenshots/transmitKeyboardWindow.png" />
-        </a>  
+        </a>
+        <p>
+            Note that this is a modal window and retains focus until closed. At the top of the screen the status of the F5 key is shown. Transmission can be started, paused or stopped with this key at any time. All input is converted to caps and the only special keys accepted are backspace, escape and F5. Backspace will delete the last keyboard input and Escape will clear all entries in order to start over.
+        </p> 
+        <p>
+            As you are typing the input appears in the 'Keyboard Input' If transmission is on, the characters will move from that string to the 'Character Being Transmitted display area along with the name of the character immediately below. At the same time the character will go to the 'String Being Transmitted' area where all of the characters remain until the window is closed or the window is cleared by entering escape.  If you type ahead of the transmission, the characters in the 'Keyboard Input' can be edited using the delete key and retyping.
+        </p> 
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <h3>4.0 File and Program Structure</h3>
         <p>
