@@ -81,22 +81,22 @@
         <p> 
             From the menu bar under Help, selecting "Code Table" will display the code table built into the program. There are 60 entries in the table with the last being a word space. Selecting Help will display this file in the MatLab browser. Selecting About will provide author details and version number.
         </p>
-        <h3 id="2.0">2.0 Setup and Instalation</h3>
+        <h3 id="3.0">3.0 Setup and Instalation</h3>
         <p>
-            To be added
+            The program can be downloaded from the git reposatry located at <A href="https://github.com/jbwillmann/MorseCode.git">https://github.com/jbwillmann/MorseCode.git</A> .
         </p>
-        <h3 id="3.0">3.0 Screen Shots</h3>
+        <h3 id="4.0">4.0 Screen Shots</h3>
         <p>
             In this section we review the user interface and describe each of the program windows and its operation.
         </p>
-        <h4 id="3.1">3.1 Main Program Screen</h4>
+        <h4 id="4.1">4.1 Main Program Screen</h4>
         <p> 
              This is the window that opens when the file morse.m is executed. Along the top is a drop down menu which allows you to change user preferences, select a .wav audio file for playback  or use the help system. In the center of the screen is the username and the selected user code speed and word speed. Along the bottom are three action buttons allowing the user to either transmit the alphabet, transmit from a saved file, or transmitted code directly from the keyboard.
         </p>
         <a href="screenshots/mainProgramWindow.png">
             <img alt="A screenshot showing Main Program Screen" src="screenshots/mainProgramWindow.png"/ width="500">
             
-        </a><h5>3.3.1 Drop Down Menu</h5>
+        </a><h5>4.1.1 Drop Down Menu</h5>
         <p>
         The drop down menu on the main program figure has the following choices:
         </p>
@@ -131,7 +131,7 @@
                 </ul>             . 
             </li>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h4 id="3.2">3.2 User Preferences Screen</h4>
+        <h5 id="4.1.1">4.1.1 User Preferences Screen</h5>
         <p>
             When User Preferences is selected from the Preferences Drop Down Menu on the main Screen, the window shown below opens. 
         </p>
@@ -142,7 +142,18 @@
             This window displays the currently selected user at the top of the window. The drop down box labeled "Select a User" can be selected to allow you to "Add a New User" or to select a user from the list displayed.  If a user is selected, that users preferences are displayed and can be edited if desired. After the editing is complete, select "Save" to save the changes. If the user selected is not the "Currently Selected User", then "Make Active" can be selected and the current user will be replaced with the new or changed user.  Also the selected user can be deleted if desired.  Note that the Default User cannot be deleted or edited. Depending on the task being performed, only certain of the action buttons along the bottom of the window are displayed or enabled.
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h4 id="3.3">3.3 Transmit from Alphabet Screen</h4>
+        <h5 id="4.1.2">4.1.2 Window Preferences Screen</h5>
+        <p>
+            When Window Preferences is selected from the Preferences Drop Down Menu on the main Screen, the window shown below opens. 
+        </p>
+        <a href="screenshots/windowPreferencesWindow.png">
+            <img alt="A screenshot showing Window Preferences" src="screenshots/windowPreferencesWindow.png"/ width="400">
+        </a>
+        <p>
+            This window displays the currently selected user at the top of the window. There is a checkbox to select 'Save Window Position on Exit'. The default is checked. Once you like the position of windows and have saved those windows, then those windows will reopen at that position. If desired, after windows are positioned to your liking, the box can be unchecked to prevent further changes. The 'Scale Factor' is set to 1 by default. It is currently not used.
+        </p>
+        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h4 id="4.2">4.2 Transmit from Alphabet Screen</h4>
         <p>
             When Transmit Alphabet is selected on the main screen, the window shown below opens.
         </p>
@@ -156,7 +167,7 @@
             Selecting the Start Tranxmission button will begin the transmission. The Start Transmision will change into a Pause Transmission button that can selected to pause the transmission. Sel;ecting Exit at any time will stop the transmission and close the window
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h5 id="3.3.1">3.3.1 Alphabet Preferences Screen</h5>
+        <h5 id="4.2.1">4.2.1 Alphabet Preferences Screen</h5>
         <p>
             This csreen opens when Select Mode is selected from the Transmit Alphabet screen.
         </p>
@@ -176,7 +187,7 @@
             When all choices are made and Save is selected, the Preferences file is updated and the TransmitAlphabet program is restarted to reflect the new settings.  Otherwise if Cancel is selected all entries are discarded and the window is closed.
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h4 id="3.4">3.4 Transmit From File Screen</h4>
+        <h4 id="4.3">4.3 Transmit From File Screen</h4>
          <p>
             When Transmit File is selected on the main screen, the window shown below opens.
         </p>
@@ -197,7 +208,7 @@
         </p>
         
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h4 id="3.5">3.5 Transmit From Keyboard Screen</h4>
+        <h4 id="4.4">4.4 Transmit From Keyboard Screen</h4>
          <p>
             When Transmit Keyboard is selected on the main screen, the window shown below opens.
         </p>
@@ -211,7 +222,7 @@
             As you are typing the input appears in the 'Keyboard Input' If transmission is on, the characters will move from that string to the 'Character Being Transmitted display area along with the name of the character immediately below. At the same time the character will go to the 'String Being Transmitted' area where all of the characters remain until the window is closed or the window is cleared by entering escape.  If you type ahead of the transmission, the characters in the 'Keyboard Input' can be edited using the delete key and retyping.
         </p> 
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-    <h3 id="4.0">4.0 File and Program Structure</h3>
+    <h3 id="5.0">5.0 File and Program Structure</h3>
         <p>
             The following screenshot shows the directory structure and all of the system files used by the program. In what follows we describe each of the files in detail.
         </p>
@@ -263,7 +274,7 @@
                
         </ul>
 
-        <h3 id="5.0">5.0 Design of the Program</h3>
+        <h3 id="6.0">6.0 Design of the Program</h3>
         <p>
             The core of the program is the CodeTable. The function BuildCodeTable creates a 60x4 cell array where the first 3 columns are text and contain the character, dots and dashes, dits and daws. The fourth column is reserved for a wave file that represents the Morse code for that character at the selected speed and audio frequency.
             After the GUI is constricted, to initialize the program the function FillCodeTable is called. This function first calls BuildCodeTable to populate the first three columns of the CodeTable. Then this function builds the dots dashes and spaces for the selected code and word speed by calling the function MakeWave to build the wave file for a dot, dash and spaces. Then MakeCharacter is called to build the wave file for each character. This result is stored in the fourth column of the CodeTable for each of the character entries in the table.
