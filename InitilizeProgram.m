@@ -2,6 +2,14 @@ function  InitilizeProgram()
 % InitilizeProgram - This function sets up all of the necessary default
 % program data.
 
+% Make sure there is a ProgramData directory
+
+
+if exist('ProgramData','dir') == 0
+    newDir = 'ProgramData';
+    dirMkStat = mkdir(newDir);
+end
+    
 % Create the default varable arrays allUsersPrefs, windowsPrefs and glob
 % and save them to the PreferencesFile.mat file
 
