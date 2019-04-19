@@ -21,7 +21,7 @@ function TransmitKeyboard
 
 % Set up workspace variables.
     TimerHandle = [];
-    timerRunning = 0;
+    transmittingOn = 0;
     characterInCount = 0;   % Number of valad morse input characters typed
     sentCount = 0;          % Number of characters transmitted
     bufferString = 0;       % Number of characters currently in input string
@@ -151,6 +151,16 @@ function TransmitKeyboard
         'Callback', @CloseRequestCallback ...
     );
 
+%% Set up a timer  -------------------------------------------------
+    TimerHandle = timer(...
+        'TimerFcn',@TimerTaskCallback,...
+        'ExecutionMode','fixedSpacing',...
+        'Period', .3 ...
+    );
+
+    % Start the timer task
+        start(TimerHandle);
+
 %% KeyPressCallback -----------------------------------------------
     function KeyPressCallback(~, evnt)
         keyIn = evnt.Key;
@@ -161,10 +171,10 @@ function TransmitKeyboard
             set(XmitStringHandle, 'string', defaultString);
             set(KbdStringHandle, 'string', ' ');
             set(XmitControlHandle,'string', transmitControlOffString);
-            timerRunning = 0;
+            transmittingOn = 0;
             characterInCount = 0;   % Number of valad morse input characters typed
             sentCount = 0;          % Number of characters transmitted
-            bufferString = 0;       % Number of characters currently in input string
+            bufferString = 0;       % Number of characters in input string
             sentKbdString = [];         % Transmitted string
             inputString = cell(3,1);    % Clear input array          
             displayInputString = [];    % To display typed input
@@ -172,7 +182,8 @@ function TransmitKeyboard
             return
         end
         
-        % Remove the last character if backspace is entered and there is a character to delete   
+        % Remove the last character if backspace is entered 
+        % and there is a character to delete   
         if characterInCount > 0 && strcmp(keyIn, 'backspace')
             characterInCount = characterInCount-1;
             inputString = inputString(:,1:characterInCount);
@@ -185,31 +196,17 @@ function TransmitKeyboard
         
         % If F5 is pressed toggle transmit on/off
         if strcmp(keyIn, 'f5')
-            if timerRunning == 0
-                %   Initilaze a timer task 
-                TimerHandle = timer(...
-                    'TimerFcn',@TimerTaskCallback,...
-                    'ExecutionMode','fixedSpacing',...
-                    'Period', .3 ...
-                );
-                % Start the timer task
-                    start(TimerHandle);
-                    timerRunning = 1;
-                    set(XmitControlHandle,'string', transmitControlOnString);
-                    drawnow;               
+            if transmittingOn == 0              
+                transmittingOn = 1;
+                set(XmitControlHandle,'string', transmitControlOnString);              
             else
-            % Stop the timer
+                transmittingOn = 0;
                 set(XmitControlHandle,'string', transmitControlOffString);
-                drawnow;
-                stop(TimerHandle);
-                delete(TimerHandle);
-                timerRunning = 0;
             end
-            % disp(['Timer Running ' num2str(timerRunning)]);
             return   
         end
         
-     % A character has ben typed that needs to be processes if it is a   
+     % A character has been typed that needs to be processes if it is a   
      %  valad character. Convert to upper and find it in the CodeTable.   
         typedCharacter = upper(evnt.Character);
         Found = 0;
@@ -247,12 +244,19 @@ function TransmitKeyboard
     %   new character has been added to InputString. If so it is
     %   transmitted and the SentCount is increased and the bufferString
     %   count is decreased. 
-        
-        if bufferString < 1 % no characters to transmit
+    
+    % If transmitting is off then exit
+        if transmittingOn == 0  
             return
         end
-      
-        % Remove the first character in the displayInputString
+        
+    % If there are no characters to transmit then exit
+        if bufferString < 1     
+            return
+        end
+     
+    % We have a character to transmit
+    % Remove the first character in the displayInputString
         displayInputString = ...
                 displayInputString(1,2:size(displayInputString,2));
         set(KbdStringHandle, 'string', displayInputString);
@@ -263,24 +267,23 @@ function TransmitKeyboard
         currentCharacterName = inputString{3,sentCount};   
         sentKbdString = [sentKbdString ' ' characterIn];
         
-        % Update the displays
+    % Update the displays
         set(XmitCharacterHandle, 'string', characterIn);
         set(XmitCharacterNameHandle, 'string', currentCharacterName );
         set(XmitStringHandle, 'string',  sentKbdString );
         drawnow
 
-        % Transmit the character
+    % Transmit the character
         player = audioplayer(waveFile, sampleRate);
-        playblocking(player); 
+        playblocking(player);
+
       end
                   
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
         % Stop the timer
-        if timerRunning
-             stop(TimerHandle);
-             delete(TimerHandle);
-        end       
+        stop(TimerHandle);
+        delete(TimerHandle);    
         CloseWindow();
     end
 
