@@ -24,7 +24,6 @@ function TransmitKeyboard
     transmittingOn = 0;
     characterInCount = 0;   % Number of valad morse input characters typed
     sentCount = 0;          % Number of characters transmitted
-    bufferString = 0;       % Number of characters currently in input string
     sentKbdString = [];         % Transmitted string
     inputString = cell(2,1);    % Clear input array
     displayInputString = [];    % To display typed input
@@ -172,9 +171,8 @@ function TransmitKeyboard
             set(KbdStringHandle, 'string', ' ');
             set(XmitControlHandle,'string', transmitControlOffString);
             transmittingOn = 0;
-            characterInCount = 0;   % Number of valad morse input characters typed
+            characterInCount = 0;   % Number of valad morse input characters
             sentCount = 0;          % Number of characters transmitted
-            bufferString = 0;       % Number of characters in input string
             sentKbdString = [];         % Transmitted string
             inputString = cell(3,1);    % Clear input array          
             displayInputString = [];    % To display typed input
@@ -213,7 +211,6 @@ function TransmitKeyboard
         % Look through the code table for the typed character
         for m=1:60
             if typedCharacter == codeTable{m,1}
-                bufferString = bufferString + 1;
                 characterInCount = characterInCount+1;
                 inputString{1,characterInCount} = typedCharacter;
                 inputString{2,characterInCount} = codeTable{m,6};
@@ -251,7 +248,7 @@ function TransmitKeyboard
         end
         
     % If there are no characters to transmit then exit
-        if bufferString < 1     
+        if characterInCount < 1     
             return
         end
      
@@ -260,7 +257,7 @@ function TransmitKeyboard
         displayInputString = ...
                 displayInputString(1,2:size(displayInputString,2));
         set(KbdStringHandle, 'string', displayInputString);
-        bufferString = bufferString - 1;
+        characterInCount = characterInCount - 1;
         sentCount = sentCount+1;
         characterIn = inputString{1,sentCount};        
         waveFile = inputString{2,sentCount};
