@@ -317,6 +317,6 @@ function codeTable = BuildCodeTable()
         codeTable{60,1} = ' ';
             codeTable{60,2} = '   ';
             codeTable{60,3} = '   ';
-            codeTable{60,4} = '';
+            codeTable{60,4} = 'Space';
             codeTable{60,5} = '';
 end % end BuildCodeTable
