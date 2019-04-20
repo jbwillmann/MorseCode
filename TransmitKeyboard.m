@@ -3,7 +3,8 @@ function TransmitKeyboard
 
 %% Initilize the user variables -----------------------------------
 % Load the preferences file.
-    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs', 'windowsPrefs', 'glob');
+    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
+        'windowsPrefs', 'glob');
     
 % Load the CodeTableFile.
     load('ProgramData/CodeTableFile.mat', 'codeTable');
@@ -23,9 +24,8 @@ function TransmitKeyboard
     TimerHandle = [];
     transmittingOn = 0;
     characterInCount = 0;   % Number of valad morse input characters typed
-    sentCount = 0;          % Number of characters transmitted
     sentKbdString = [];         % Transmitted string
-    inputString = cell(2,1);    % Clear input array
+    inputString = cell(3,1);    % Clear input array
     displayInputString = [];    % To display typed input
     defaultString = ['To send code just begin typing. '...
     'All input is converted to caps and the only special '...
@@ -39,12 +39,12 @@ function TransmitKeyboard
         'Use F5 to toggle Transmit On/Off. Current status - On';
     
 %% Set up main user interface  ------------------------------------
-% Setup GUI parameters   
+% Setup GUI parameters
     windowWidth = windowsPrefs{5,5};
     windowHeight =  windowsPrefs{6,5};
-    textFont = windowsPrefs{7,5};   
-    green = [.255 .627 .225];   
-    white = [1  1  1]; 
+    textFont = windowsPrefs{7,5};
+    green = [.255 .627 .225];
+    white = [1  1  1];
 
 %   figure window
     figure(...
@@ -150,7 +150,7 @@ function TransmitKeyboard
         'Callback', @CloseRequestCallback ...
     );
 
-%% Set up a timer  -------------------------------------------------
+%% Set up a timer  ------------------------------------------------
     TimerHandle = timer(...
         'TimerFcn',@TimerTaskCallback,...
         'ExecutionMode','fixedSpacing',...
@@ -171,12 +171,11 @@ function TransmitKeyboard
             set(KbdStringHandle, 'string', ' ');
             set(XmitControlHandle,'string', transmitControlOffString);
             transmittingOn = 0;
-            characterInCount = 0;   % Number of valad morse input characters
-            sentCount = 0;          % Number of characters transmitted
+            characterInCount = 0;   % Number of valad input characters
             sentKbdString = [];         % Transmitted string
             inputString = cell(3,1);    % Clear input array          
             displayInputString = [];    % To display typed input
-            drawnow
+            drawnow nocallbacks 
             return
         end
         
@@ -188,7 +187,7 @@ function TransmitKeyboard
             displayInputString = ...
                 displayInputString(1,1:size(displayInputString,2) - 1);
             set(KbdStringHandle, 'string', displayInputString);
-            drawnow
+            drawnow nocallbacks 
             return
         end
         
@@ -196,7 +195,7 @@ function TransmitKeyboard
         if strcmp(keyIn, 'f5')
             if transmittingOn == 0              
                 transmittingOn = 1;
-                set(XmitControlHandle,'string', transmitControlOnString);              
+                set(XmitControlHandle,'string', transmitControlOnString);
             else
                 transmittingOn = 0;
                 set(XmitControlHandle,'string', transmitControlOffString);
@@ -204,17 +203,18 @@ function TransmitKeyboard
             return   
         end
         
-     % A character has been typed that needs to be processes if it is a   
-     %  valad character. Convert to upper and find it in the CodeTable.   
+     %  A character has been typed that needs to be processed. 
+     %  If it is a valad character. Convert to upper and find
+     %  it in the CodeTable.   
         typedCharacter = upper(evnt.Character);
         Found = 0;
         % Look through the code table for the typed character
         for m=1:60
             if typedCharacter == codeTable{m,1}
                 characterInCount = characterInCount+1;
-                inputString{1,characterInCount} = typedCharacter;
-                inputString{2,characterInCount} = codeTable{m,6};
-                inputString{3,characterInCount} = codeTable{m,4};
+                inputString{1,characterInCount} = typedCharacter; 
+                inputString{2,characterInCount} = codeTable{m,6}; 
+                inputString{3,characterInCount} = codeTable{m,4}; 
                 Found = 1;
                 break
             end
@@ -225,15 +225,15 @@ function TransmitKeyboard
             return
         end
         
-        % Display the  character in the keyboard input display    
+        % Display the  character in the keyboard input display
         if characterInCount == 1    % First one
             displayInputString = typedCharacter;          
         else
             displayInputString = [displayInputString  typedCharacter];
         end
         set(KbdStringHandle, 'string', displayInputString);
-        drawnow
-    end
+        drawnow nocallbacks 
+    end % end KeyPressCallback
  
 %% TimerTaskCallback ----------------------------------------------
      function TimerTaskCallback(~,~)
@@ -251,30 +251,34 @@ function TransmitKeyboard
         if characterInCount < 1     
             return
         end
-     
-    % We have a character to transmit
-    % Remove the first character in the displayInputString
-        displayInputString = ...
-                displayInputString(1,2:size(displayInputString,2));
-        set(KbdStringHandle, 'string', displayInputString);
-        characterInCount = characterInCount - 1;
-        sentCount = sentCount+1;
-        characterIn = inputString{1,sentCount};        
-        waveFile = inputString{2,sentCount};
-        currentCharacterName = inputString{3,sentCount};   
-        sentKbdString = [sentKbdString ' ' characterIn];
+
+    % We have a character to transmit its the first on the string
+        characterIn = inputString{1,1};        
+        waveFile = inputString{2,1};
+        currentCharacterName = inputString{3,1};
         
+    % remove the first entry and reduce the character count
+        inputString = inputString(:,2:characterInCount);
+        characterInCount = characterInCount - 1;
+        
+    % Remove the first character in the displayInputString and 
+    % add to the output string
+        displayInputString = ...
+                displayInputString(1,2:size(displayInputString,2));           
+        sentKbdString = [sentKbdString ' ' characterIn];
+  
     % Update the displays
+        set(KbdStringHandle, 'string', displayInputString);
         set(XmitCharacterHandle, 'string', characterIn);
         set(XmitCharacterNameHandle, 'string', currentCharacterName );
         set(XmitStringHandle, 'string',  sentKbdString );
-        drawnow
+        drawnow nocallbacks 
 
     % Transmit the character
         player = audioplayer(waveFile, sampleRate);
         playblocking(player);
 
-      end
+     end % end TimerTaskCallback
                   
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
@@ -282,6 +286,6 @@ function TransmitKeyboard
         stop(TimerHandle);
         delete(TimerHandle);    
         CloseWindow();
-    end
+    end % end CloseRequestCallback
 
 end % end TransmitKeyboard
