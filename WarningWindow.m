@@ -62,7 +62,7 @@ function userAction = WarningWindow(windowsPrefs,messageString)
     
     uiwait(WaitFig)
         
- % Callback  
+ % ActionCallback Callback  
     function ActionCallback(~, ~, num)
         switch num
             case 0  % Cancel
@@ -73,6 +73,6 @@ function userAction = WarningWindow(windowsPrefs,messageString)
         
         uiresume(gcbf)
         close(gcf)
-    end
+    end % end ActionCallback
                                    
 end % end WarningWindow

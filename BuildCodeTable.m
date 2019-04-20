@@ -319,4 +319,4 @@ function codeTable = BuildCodeTable()
             codeTable{60,3} = '   ';
             codeTable{60,4} = '';
             codeTable{60,5} = '';
-    end
+end % end BuildCodeTable

@@ -48,5 +48,5 @@ function [textToSend, fileNameWithTag] = PreprocessInputFile(userName)
             end        
         end
 
-end
+end % end PreprocessInputFile
 

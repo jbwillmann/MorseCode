@@ -14,4 +14,4 @@ function WavePlay(userName)
         [y,Fa] = audioread(filePath);
         sound(y,Fa);
      
-end
+end % end WavePlay

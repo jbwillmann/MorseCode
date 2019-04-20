@@ -32,5 +32,5 @@ end
     fid = fopen('UserData/DefaultUser/CodeGroups.txt', 'w');
     fprintf(fid, codeGroups);
     closeStat = fclose(fid);
-end
+end % end InitilizeProgram
 

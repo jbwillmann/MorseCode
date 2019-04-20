@@ -445,11 +445,11 @@ function UpdateUserCallback(src, ~, num)
             CloseRequestCallback()
           
     end   % switch           
-end  % UpdateUserCallback 
+end  % end UpdateUserCallback 
 
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
         CloseWindow()
-    end  
+    end % end CloseRequestCallback
 
 end  % end UserPreferences

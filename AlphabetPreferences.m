@@ -225,9 +225,9 @@ function AlphabetPreferences(CodeOutWinHandle)
             case 7  % Exit
                 CloseWindow()
 
-        end
+        end % end switch
         
-    end
+    end % end UpdateAlphaCallback
     
 end % AlphabetPreferences
 

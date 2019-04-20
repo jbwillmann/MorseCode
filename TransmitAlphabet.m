@@ -3,7 +3,8 @@ function TransmitAlphabet()
 
 %% Initilize the user variables -----------------------------------
 % Load the preferences file.
-    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs', 'windowsPrefs', 'glob');
+    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
+        'windowsPrefs', 'glob');
     
 % Load the codeTable file.
     load('ProgramData/CodeTableFile.mat', 'codeTable');
@@ -246,7 +247,7 @@ function TransmitAlphabet()
         
         stopXmit = 0;
         
-    end
+    end % end XmitAlphabet
 
 %%  SelectModeCallback --------------------------------------------
     function SelectModeCallback(~, ~, ~)
@@ -259,7 +260,7 @@ function TransmitAlphabet()
         else
            AlphabetPreferences(AlphabetWinHandle);
         end
-    end
+    end % end SelectModeCallback
 
 %% StartStopCallback callback -------------------------------------
     function StartStopCallback(src, ~, ~)
@@ -272,12 +273,12 @@ function TransmitAlphabet()
             firstTime = 0;
             set(src, 'string', 'Start Transmission')           
         end       
-    end
+    end % end StartStopCallback
 
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
         stopXmit = 1;
         CloseWindow()
-    end
+    end % end CloseRequestCallback
 
 end % end TransmitAlphabet

@@ -84,5 +84,5 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
         WindowBottom; round(.64*WindowWidth); round(.6*WindowHeight);...
         round(TextFont,1); round(TextHeight,1)}; 
 
-end
+end % end CreatePrefsArray
 

@@ -3,7 +3,8 @@ function TransmitFile()
 
 %% Initilize the user variables -----------------------------------
 % Load the preferences file.
-    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs', 'windowsPrefs', 'glob');
+    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
+        'windowsPrefs', 'glob');
     
 % Load the codeTable file.
     load('ProgramData/CodeTableFile.mat', 'codeTable');
@@ -159,13 +160,12 @@ function TransmitFile()
         [textFileToSend, fileNameWithTag] = ...
             PreprocessInputFile(userName);
 
-        if fileNameWithTag == ' ' % No file was selected                 firstFileSelect = 0;
+        if fileNameWithTag == ' ' % No file was selected
             return
         end
 
         % File was selected
         firstXmitFile = 1;
-%             firstFileSelect = 1;
         [~, baseFileName, ~] = fileparts(fileNameWithTag);
         windowTitle = ['Transmit from File:  ' fileNameWithTag];
         set(StartStopHandle, 'Enable', 'on'),
@@ -173,7 +173,7 @@ function TransmitFile()
         set(XmitCharacterHandle, 'string', ' ' );
         set(XmitStringHandle, 'string', ' ' );
 
- end
+    end % end SelectInputFileCallback
 
 %%  XmitFile ------------------------------------------------------
     function XmitFile
@@ -234,7 +234,7 @@ function TransmitFile()
         
         stopXmit = 0;
 
-    end
+    end % end XmitFile
 
 %% StartStopCallback ----------------------------------------------
     function StartStopCallback(src, ~, ~)
@@ -247,17 +247,17 @@ function TransmitFile()
             firstTime = 0;
             set(src, 'string', 'Start Transmission')           
         end      
-    end
+    end % end StartStopCallback
 
 %% CheckBoxCallback -----------------------------------------------
     function CheckBoxCallback(src , ~)
         saveAudioFile = get(src,'Value');
-    end
+    end % end CheckBoxCallback
 
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
         stopXmit = 1;
         CloseWindow()
-    end
+    end % end CloseRequestCallback
 
 end % end TransmitFile
