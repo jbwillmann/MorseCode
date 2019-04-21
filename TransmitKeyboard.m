@@ -197,6 +197,8 @@ function TransmitKeyboard
             else
                 transmittingOn = 0;
                 set(XmitControlHandle,'string', transmitControlOffString);
+                set(XmitCharacterHandle, 'string', ' ');
+                set(XmitCharacterNameHandle, 'string', ' ' );
             end
             return   
         end
@@ -246,7 +248,10 @@ function TransmitKeyboard
         end
         
     % If there are no characters to transmit then exit
-        if characterInCount < 1     
+        if characterInCount < 1  
+            % Clear transmit character display of last sent character
+            set(XmitCharacterHandle, 'string', ' ');
+            set(XmitCharacterNameHandle, 'string', ' ' );
             return
         end
 

@@ -245,6 +245,10 @@ function TransmitAlphabet()
             end
         end
         
+    % Stopped transmitting. Clear transmit character display of last
+    % sent character        
+        set(XmitCharacterHandle, 'string', ' ' );
+        set(XmitCharacterNameHandle, 'string', ' ' );
         stopXmit = 0;
         
     end % end XmitAlphabet
@@ -271,7 +275,7 @@ function TransmitAlphabet()
         else
             stopXmit = 1;
             firstTime = 0;
-            set(src, 'string', 'Start Transmission')           
+            set(src, 'string', 'Start Transmission')
         end       
     end % end StartStopCallback
 

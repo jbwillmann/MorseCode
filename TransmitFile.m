@@ -231,7 +231,11 @@ function TransmitFile()
             fileName = ['UserData/' userName '/' baseFileName '.wav'];
             audiowrite(fileName, audioFileToRecord, sampleRate);
         end
-        
+
+    % Stopped transmitting. Clear transmit character display of last
+    % sent character
+        set(XmitCharacterHandle, 'string', ' ' );
+        set(XmitCharacterNameHandle, 'string', ' ' );
         stopXmit = 0;
 
     end % end XmitFile
