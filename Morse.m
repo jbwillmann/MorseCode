@@ -5,7 +5,7 @@ function Morse()
 % First, test to see if the PreferencesFile.mat file is in the
 % ProgramData directory. If not, set some varables and create the file.
     if exist('ProgramData/PreferencesFile.mat','file') == 0
-        InitilizeProgram()
+        InitializeProgram()
     end
     
 % Load the PreferencesFile.mat file from the ProgramData directory.
