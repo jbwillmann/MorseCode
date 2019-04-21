@@ -5,7 +5,7 @@ function UserPreferences()
 % Unless the user exits without making changes, the main program, 
 % Morse.m is restarted and reinitialized with the new changes.
 
-%% Initialize the user variables -----------------------------------
+%% Initialize the user variables ----------------------------------
 % Get all the variables from the PreferencesFile.mat
 % This loads the variable arrays allUsersPrefs and windowsPrefs
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...

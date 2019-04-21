@@ -3,10 +3,11 @@ function WindowPreferences()
 % the main figure menu. This window opens and the user can edit Window
 % Preferences.
 
-%% Initialize the user variables -----------------------------------
+%% Initialize the user variables ----------------------------------
 % Get all the variables from the PreferencesFile.mat
 % This loads the variable arrays allUsersPrefs and windowsPrefs
-    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs', 'windowsPrefs', 'glob');
+    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
+        'windowsPrefs', 'glob');
   
 % Set up some variables
     white = [1  1  1];

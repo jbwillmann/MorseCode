@@ -1,7 +1,7 @@
 function AlphabetPreferences(CodeOutWinHandle)
 %Sets the modes for alphabet transmission.
 
-%% Initialize the user variables -----------------------------------
+%% Initialize the user variables ----------------------------------
 % Get all the variables from the PreferencesFile.mat
 % This loads the variable arrays allUsersPrefs and windowsPrefs
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...

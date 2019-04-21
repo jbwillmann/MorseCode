@@ -1,7 +1,7 @@
 function Morse()
 % This is the main program to start the process.
 
-%% Initialize the user variables -----------------------------------
+%% Initialize the user variables ----------------------------------
 % First, test to see if the PreferencesFile.mat file is in the
 % ProgramData directory. If not, set some varables and create the file.
     if exist('ProgramData/PreferencesFile.mat','file') == 0

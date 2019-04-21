@@ -1,7 +1,7 @@
 function TransmitAlphabet()
 % TransmitAlphabet transmits the alphabet from the codeTable
 
-%% Initialize the user variables -----------------------------------
+%% Initialize the user variables ----------------------------------
 % Load the preferences file.
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');

@@ -1,7 +1,7 @@
 function TransmitKeyboard
 % TransmitKeyboard transmits code from the keyboard
 
-%% Initialize the user variables -----------------------------------
+%% Initialize the user variables ----------------------------------
 % Load the preferences file.
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
