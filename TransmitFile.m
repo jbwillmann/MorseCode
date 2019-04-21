@@ -1,7 +1,7 @@
 function TransmitFile()
 % TransmitFile transmits code from a user selected text file.
 
-%% Initilize the user variables -----------------------------------
+%% Initialize the user variables -----------------------------------
 % Load the preferences file.
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
@@ -177,7 +177,7 @@ function TransmitFile()
 
 %%  XmitFile ------------------------------------------------------
     function XmitFile
-    %Transmits the choosen file.
+    %Transmits the chosen file.
 
     % Setup some variables
         persistent  charCount

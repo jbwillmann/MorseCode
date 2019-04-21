@@ -1,7 +1,7 @@
 function  codeTable = FillCodeTable(codeSpeed, wordSpeed,...
                                 frequency, samplesPerCycle)
 % Creates the CodeTable and fills it with wave files based on the 
-% code and word rate and frequenct.
+% code and word rate and frequency.
 
 %%  FillCodeTable Function ---------------------------------------
 % Get the initial CodeTable setup
@@ -49,7 +49,7 @@ function waveFile = MakeCharacter( characterCode, dit, daw,...
 % MakeCharacter puts together the wave file of a 
 % complete Morse character
     siz = size(characterCode,2); 
-%   Initilize WaveFile
+%   Initialize WaveFile
     waveFile = 0;
 %   Make the WaveFile
     for count = 1:siz
@@ -69,7 +69,7 @@ end % end MakeCharacter Function
 %%  MakeWave Function --------------------------------------------
 function wavReturn = MakeWave(time, amp, freq, samplesPerCycle )
 %   Created a wave file specified by the input parameters.
-%   This section was changet to improve the audio quality.
+%   This section was changed to improve the audio quality.
 %   Now the amplitude of each tone has a gradual increase at the
 %   beginning and a gradual decrease at the end.  This reduces
 %   harmonics and mahes a more pleasant sound.

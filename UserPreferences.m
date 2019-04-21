@@ -2,12 +2,12 @@ function UserPreferences()
 % This function is called when the user selects User Preferences on 
 % the main figure menu. A preferences window is opened and the user
 % can edit user preferences. A new User can also be created.
-% Unless the the user exits without making changes, the main program, 
-% Morse.m is restarted and reinitilized with the new changes.
+% Unless the user exits without making changes, the main program, 
+% Morse.m is restarted and reinitialized with the new changes.
 
-%% Initilize the user variables -----------------------------------
-% Get all the varables from the PreferencesFile.mat
-% This loads the varable arrays allUsersPrefs and windowsPrefs
+%% Initialize the user variables -----------------------------------
+% Get all the variables from the PreferencesFile.mat
+% This loads the variable arrays allUsersPrefs and windowsPrefs
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
 
@@ -209,7 +209,7 @@ function UpdateUserCallback(src, ~, num)
         case 0  % Drop Down Menu
             dropdownSelect = get(src,'Value');
             
-            % Index of selected uder if dropdownSelect > 2.
+            % Index of selected user if dropdownSelect > 2.
             userSelect = dropdownSelect - 1;
             
             if dropdownSelect == 1   % Select a User - Clear and return.

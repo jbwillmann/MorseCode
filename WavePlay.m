@@ -5,7 +5,7 @@ function WavePlay(userName)
         [fileNameWithTag, fileDirectory] = uigetfile({'*.wav'},...
             'Select an audio file',...
             [startDirectory  '/UserData/' userName '/']);
-        if fileNameWithTag == 0  % User canceles - get out
+        if fileNameWithTag == 0  % User cancels - get out
             return
         end
         filePath = [fileDirectory  fileNameWithTag];

@@ -1,7 +1,7 @@
 function Morse()
 % This is the main program to start the process.
 
-%% Initilize the user variables -----------------------------------
+%% Initialize the user variables -----------------------------------
 % First, test to see if the PreferencesFile.mat file is in the
 % ProgramData directory. If not, set some varables and create the file.
     if exist('ProgramData/PreferencesFile.mat','file') == 0
@@ -210,7 +210,7 @@ function Morse()
     % Call the function to display the message box
         userAction = WarningWindow(windowsPrefs,messageString);
      
-    % User didnt cancel so do it, otherwise just return
+    % User didn't cancel so do it, otherwise just return
         if userAction == 1    
             delete('ProgramData/PreferencesFile.mat');
             delete('ProgramData/CodeTableFile.mat')

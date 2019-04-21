@@ -10,7 +10,7 @@ if exist('ProgramData','dir') == 0
     dirMkStat = mkdir(newDir);
 end
     
-% Create the default varable arrays allUsersPrefs, windowsPrefs and glob
+% Create the default variable arrays allUsersPrefs, windowsPrefs and glob
 % and save them to the PreferencesFile.mat file
 
     [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray();

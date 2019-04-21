@@ -1,10 +1,11 @@
 function AlphabetPreferences(CodeOutWinHandle)
 %Sets the modes for alphabet transmission.
 
-%% Initilize the user variables -----------------------------------
-% Get all the varables from the PreferencesFile.mat
-% This loads the varable arrays allUsersPrefs and windowsPrefs
-    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs', 'windowsPrefs', 'glob');
+%% Initialize the user variables -----------------------------------
+% Get all the variables from the PreferencesFile.mat
+% This loads the variable arrays allUsersPrefs and windowsPrefs
+    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
+        'windowsPrefs', 'glob');
   
 % Determine SelectedUser
     numUsers = size(allUsersPrefs,2);  
@@ -42,7 +43,7 @@ function AlphabetPreferences(CodeOutWinHandle)
     alphaGroups{4} = '  Alpha + Num + Puncuation + Special'; 
     
 %% Set up main user interface  ------------------------------------
-% Initalize figure variables
+% Initialize figure variables
 
     windowWidth = windowsPrefs{5,7};
     windowHeight =  windowsPrefs{6,7};
@@ -122,7 +123,7 @@ function AlphabetPreferences(CodeOutWinHandle)
         'string', 'Min:'...
     );
 
-% indexCreate edit box to enter minimum group size
+% Create edit box to enter minimum group size
     MinHan = uicontrol('Style', 'edit',...
         'Units', 'normalized',...
         'Position', [ .53 .30 .1 .1 ],...
@@ -230,4 +231,3 @@ function AlphabetPreferences(CodeOutWinHandle)
     end % end UpdateAlphaCallback
     
 end % AlphabetPreferences
-

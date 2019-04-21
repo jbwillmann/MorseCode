@@ -1,7 +1,7 @@
 function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
 % This function creates the allUsersPrefs array, windowsPrefs and the
-% alphaPrefs.  Also some "global" variables which need to be persistant and
-% saved between sessions.
+% alphaPrefs.  Also some "global" variables which need to be persistent
+% and saved between sessions.
 
 % "Global" variables
     glob.saveWindows = 1;       % set to 1 to save window position on close,
@@ -10,7 +10,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     glob.selectedUserName = 'Default User';
 
 % Create alphabet transmit default preferences
-    % 1 = Alphabet=26, 2 = +Numbers = 36, 3 = +Puncuation = 53,
+    % 1 = Alphabet=26, 2 = +Numbers = 36, 3 = +Punctuation = 53,
     % 4 = +Special Characters = 59
     alphaPrefs.include = 1;     % 1 = Alphabet only    
     alphaPrefs.format = 1;      % 1 = continuous ; 2 = random

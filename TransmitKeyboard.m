@@ -1,7 +1,7 @@
 function TransmitKeyboard
 % TransmitKeyboard transmits code from the keyboard
 
-%% Initilize the user variables -----------------------------------
+%% Initialize the user variables -----------------------------------
 % Load the preferences file.
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
@@ -23,7 +23,7 @@ function TransmitKeyboard
 % Set up workspace variables.
     TimerHandle = [];
     transmittingOn = 0;
-    characterInCount = 0;   % Number of valad morse input characters typed
+    characterInCount = 0;   % Number of valid Morse input characters typed
     sentKbdString = [];         % Transmitted string
     inputString = cell(3,1);    % Clear input array
     displayInputString = [];    % To display typed input
@@ -162,7 +162,6 @@ function TransmitKeyboard
 %% KeyPressCallback -----------------------------------------------
     function KeyPressCallback(~, evnt)
         keyIn = evnt.Key;
-        %fprintf('key pressed: %s\n',keyIn);
         % Clear all entries to start over if escape is pressed
         if strcmp(keyIn, 'escape')
             set(XmitCharacterHandle, 'string', ' ');
@@ -170,7 +169,7 @@ function TransmitKeyboard
             set(KbdStringHandle, 'string', ' ');
             set(XmitControlHandle,'string', transmitControlOffString);
             transmittingOn = 0;
-            characterInCount = 0;   % Number of valad input characters
+            characterInCount = 0;   % Number of valid input characters
             sentKbdString = [];         % Transmitted string
             inputString = cell(3,1);    % Clear input array          
             displayInputString = [];    % To display typed input
@@ -203,7 +202,7 @@ function TransmitKeyboard
         end
         
      %  A character has been typed that needs to be processed. 
-     %  If it is a valad character. Convert to upper and find
+     %  If it is a valid character. Convert to upper and find
      %  it in the CodeTable.   
         typedCharacter = upper(evnt.Character);
         Found = 0;
@@ -219,12 +218,12 @@ function TransmitKeyboard
             end
         end
         
-        %  If it wasnt found get out and wait for the next one   
+        %  If it wasn't found get out and wait for the next one   
         if Found == 0
             return
         end
         
-        % Display the  character in the keyboard input display
+        % Display the character in the keyboard input display
         if characterInCount == 1    % First one
             displayInputString = typedCharacter;          
         else
@@ -251,7 +250,7 @@ function TransmitKeyboard
             return
         end
 
-    % We have a character to transmit its the first on the string
+    % We have a character to transmit. It's the first on the string
         characterIn = inputString{1,1};        
         waveFile = inputString{2,1};
         currentCharacterName = inputString{3,1};

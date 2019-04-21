@@ -1,13 +1,15 @@
 function DisplayCodeTable()
 % This function displays the built in Code Table
 % Load the preferences file.
-    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs', 'windowsPrefs', 'glob');
+    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
+        'windowsPrefs', 'glob');
     
 % Load the codeTable file.
     load('ProgramData/CodeTableFile.mat', 'codeTable');
     
 % Set some variables
-    windowWidth = windowsPrefs{5,10}';    windowHeight = windowsPrefs{6,10};
+    windowWidth = windowsPrefs{5,10}';
+    windowHeight = windowsPrefs{6,10};
     textFont = windowsPrefs{7,6}-2;       
     white = [1  1  1]; 
     
@@ -50,7 +52,7 @@ function DisplayCodeTable()
     DisplayData(:,2) = [];
 
 % Build the table
-% Note that uitable uses pixels for the columb widths
+% Note that uitable uses pixels for the column widths
     columnNames = {'Character' 'Code Name' 'Dots and Dashes'};
     width = 1.8*windowWidth;
     share = width/2;

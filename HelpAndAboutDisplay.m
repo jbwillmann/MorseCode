@@ -1,8 +1,9 @@
 function HelpAndAboutDisplay(val)
-% This function displayes the Help or About windows
+% This function displays the Help or About Windows
 
 % Load the preferences file.
-    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs', 'windowsPrefs', 'glob');
+    load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
+        'windowsPrefs', 'glob');
     
     white = [1  1  1];
     

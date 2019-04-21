@@ -1,7 +1,7 @@
 function TransmitAlphabet()
 % TransmitAlphabet transmits the alphabet from the codeTable
 
-%% Initilize the user variables -----------------------------------
+%% Initialize the user variables -----------------------------------
 % Load the preferences file.
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
@@ -29,11 +29,11 @@ function TransmitAlphabet()
         case 2  % Plus Numbers = 36
             alphaChosen = 'Alphabet + Numbers';
             stopCount = 36;
-        case 3  % Plus Puncuation = 53
-            alphaChosen = 'Alpha + Num + Puncuation';
+        case 3  % Plus Punctuation = 53
+            alphaChosen = 'Alpha + Num + Punctuation';
             stopCount = 53;
         case 4  % Plus Special Characters = 59
-            alphaChosen = 'Alpha + Num + Puncuation + Special';
+            alphaChosen = 'Alpha + Num + Punctuation + Special';
             stopCount = 59;
     end
     

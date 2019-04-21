@@ -194,7 +194,7 @@ function codeTable = BuildCodeTable()
             codeTable{36,4} = 'Zero';
             codeTable{36,5} = '— — — — —';
 
-    %   Puncuation
+    %   Punctuation
         codeTable{37,1} = ',';
             codeTable{37,2} = '--..--';
             codeTable{37,3} = 'daw daw dit dit daw daw';

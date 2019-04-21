@@ -3,8 +3,8 @@ function CloseWindow(~,~)
 % (gcf) and also saves the windows current location to the preferences file
 % if the check box in the windows preferences window is selected.
 
-% Get all varables from the PreferencesFile.mat
-% This loads the varable arrays allUsersPrefs, windowsPrefs and glob
+% Get all variables from the PreferencesFile.mat
+% This loads the variable arrays allUsersPrefs, windowsPrefs and glob
     load('ProgramData/PreferencesFile.mat',...
         'allUsersPrefs', 'windowsPrefs', 'glob');
     
