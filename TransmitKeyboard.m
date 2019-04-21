@@ -196,6 +196,7 @@ function TransmitKeyboard
                 set(XmitControlHandle,'string', transmitControlOnString);
             else
                 transmittingOn = 0;
+                pause(1);
                 set(XmitControlHandle,'string', transmitControlOffString);
                 set(XmitCharacterHandle, 'string', ' ');
                 set(XmitCharacterNameHandle, 'string', ' ' );
