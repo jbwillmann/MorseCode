@@ -244,7 +244,7 @@
         
         <ul>
             <li>
-               <em>.git:</em> A file used by git. It wont be here if you are not using git for version control.
+               <em>.git:</em> A file used by git. It won't be here if you are not using git for version control.
             </li>
             
             <li>
@@ -273,39 +273,39 @@
             </li>
             
             <li>
-                <em>AlphabetPreferences.m:</em>
+                <em>AlphabetPreferences.m:</em> This function is called from the TransmitAlphabet function with the handle to the TransmitAlphabet window. Here the user can make changes to the AlphabetTransmit preferences.  If changes are made, the preferences files are updated and the TransmitAlphaber window is closed and then reopened with the changes.
             </li>
             
             <li>
-                <em>BuildCodeTable.m:</em>
+                <em>BuildCodeTable.m:</em> This function is called by the FillCodeTable function to create the cell array (60,6) of the Morse code parameters.
             </li>
             
             <li>
-                <em>CloseWindow.m:</em>
+                <em>CloseWindow.m:</em> This function is called by all programs on closing. If the "Save Current Location" checkbox is selected, the program gets the closing window location and saves it to the windowsPrefs array to be used the next time the window is opened.
             </li>
             
             <li>
-                <em>CreatePrefsArray.m:</em>
+                <em>CreatePrefsArray.m:</em> This function is called by the InitializeProgram function to create the default allUsersPrefs, windowsPrefs and glob arrays.
             </li>
             
             <li>
-                <em>DisplayCodeTable.m:</em>
+                <em>DisplayCodeTable.m:</em> This function displays the code table used by the program. It builds a uitable to display the contents of the codeTable cell array.
             </li>
             
             <li>
-                <em>FillCodeTable.m:</em>
+                <em>FillCodeTable.m:</em> This function accepts the Users codeSpeed, wordSpeed, frequency and samplesPerCycle information to build the codeTable by calling BuilgCodeTable and then creating all of the audio samples for each Morse character and storing those samples in the codeTable. If the user changes or the properties of the user are changed, the codeTable is rebuilt.
             </li>
             
             <li>
-                <em>HelpAndAboutDisplay.m:</em>
+                <em>HelpAndAboutDisplay.m:</em> This function displays either the Help or About depending on the input argument; 1 for Help, 2 for About. Help is displayed in the MatLab browser. About is displayed in a figure window opened by the program.
             </li>
             
             <li>
-                <em>InitializeProgram.m:</em>
+                <em>InitializeProgram.m:</em> This program is called by Morse.m whenever it is necessary to initialize the program. This function calls CreatePrefsArray to build the data arrays and creates the initial ProgramData/PreferencesFile.mat. It also creates the UserData directory and builds the codeGroups file in the DefaultUser directory.
             </li>
             
             <li>
-                <em>LICENSE:</em>
+                <em>LICENSE:</em> This is the BSD 2-Clause License which applies to this program.
             </li>
             
             <li>

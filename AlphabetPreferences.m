@@ -1,4 +1,4 @@
-function AlphabetPreferences(CodeOutWinHandle)
+function AlphabetPreferences(AlphabetWinHandle)
 %Sets the modes for alphabet transmission.
 
 %% Initialize the user variables ----------------------------------
@@ -220,7 +220,7 @@ function AlphabetPreferences(CodeOutWinHandle)
                 save('ProgramData/PreferencesFile.mat',...
                     'allUsersPrefs', 'windowsPrefs', 'glob');              
                 delete(gcf)
-                delete(CodeOutWinHandle)
+                delete(AlphabetWinHandle)
                 run('TransmitAlphabet')
                 
             case 7  % Exit
