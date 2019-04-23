@@ -309,47 +309,47 @@
             </li>
             
             <li>
-                <em>Morse.m:</em>
+                <em>Morse.m:</em> This is the main program and should be run to start the application. When first run it initializes all necessaty files and opens the main window. There the user can modify or add users and select the mode of operation.
             </li>
 
             <li>
-                <em>ProcessInputFile.m:</em>
+                <em>ProcessInputFile.m:</em> This function is called by TransmitFile.m and allows the user to select a .txt file for transmission. The program prepaires the file by converting all characters to upper case and removing extra spaces. 
             </li>
             
             <li>
-                <em>README.md:</em>
+                <em>README.md:</em> The READMEme.md information file from the git repository.
             </li>
             
             <li>
-                <em>startup.m:</em>
+                <em>startup.m:</em> a file that runs automatically on startup. Currently it is just a placeholder in the event the user wished to add some initillation functionality.
             </li>
             
             <li>
-                <em>TransmitAlphabet.m:</em>
+                <em>TransmitAlphabet.m:</em> The function called from Morse.m when Transmit Alphabet is selected. If the system has previously been initialized and no user changes are desired, this function can be called directly. Then the function loads the PreferencesFile.mat and the CodeTableFile.mat.
             </li>
             
             <li>
-                <em>TransmitFile.m:</em>
+                <em>TransmitFile.m:</em> The function called from Morse.m when Transmit File is selected. If the system has previously been initialized and no user changes are desired, this function can be called directly.
             </li>
             
             <li>
-                <em>TransmitKeyboard.m:</em>      
+                <em>TransmitKeyboard.m:</em> The function called from Morse.m when Transmit Keyboard is selected. If the system has previously been initialized and no user changes are desired, this function can be called directly.
             </li>
             
             <li>
-                <em>UserPreferences.m:</em>
+                <em>UserPreferences.m:</em> This function is called when the user selects User Preferences from the drop down menu on Morse.m, Tee user can edit or add new users and make any user active. If changes are made the PreferencesFile.mat is updated and the application is restarted to reflect the new changes.
             </li>
             
             <li>
-                <em>WarningWindow.m:</em>
+                <em>WarningWindow.m:</em> This function displays a warning window allowing the operator to continue or exit.
             </li>
             
             <li>
-                <em>WavePlay.m:</em>
+                <em>WavePlay.m:</em> This function opens a directory window allowing the user to select a .wav file. If the user selects a file, it is played.
             </li>
               
             <li>
-                <em>WindowPreferences.m:</em>
+                <em>WindowPreferences.m:</em> The WindowPreferences function is called when the user selects Window Preferences on the main figure menu. The user can select to save current window positions on exit.This is the default.
             </li>  
                
         </ul>
