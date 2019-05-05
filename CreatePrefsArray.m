@@ -16,7 +16,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     glob.selectedUserName = 'Default User';
     glob.dotTime = round(1./defaultCodeSpeed,2);
     glob.flasherEnabled = 0;    % Off by default, 1 to enable       
-    glob.flasherOn = [.255 .627 .225];  % Green
+    glob.flasherOn = [.851 .325 .098];   % Red
     glob.flasherOff = [1  1  1];         % White
 
 % Create alphabet transmit default preferences
