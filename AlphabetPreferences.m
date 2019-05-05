@@ -220,7 +220,7 @@ function AlphabetPreferences(AlphabetWinHandle)
                 save('ProgramData/PreferencesFile.mat',...
                     'allUsersPrefs', 'windowsPrefs', 'glob');              
                 delete(gcf)
-                delete(AlphabetWinHandle)
+                delete(AlphabetWinHandle)             
                 run('TransmitAlphabet')
                 
             case 7  % Exit

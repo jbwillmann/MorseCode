@@ -148,6 +148,9 @@ function Morse()
         uimenu(pm, 'Label', 'Window Preferences',...
             'Callback',@WindowPreferencesCallback ...
         );
+        uimenu(pm, 'Label', 'Flasher Preferences',...
+            'Callback',@FlasherPreferencesCallback ...
+        );
         uimenu(pm, 'Label', 'Reset All Preferences',...
             'Callback', @ResetPreferencesCallback ...
         );
@@ -197,6 +200,12 @@ function Morse()
         WindowPreferences();
     end
 
+
+% Flasher Preferences Callback
+    function FlasherPreferencesCallback(~,~)
+        FlasherPreferences();
+    end
+
 % Reset Preferences Callback
     function ResetPreferencesCallback(~, ~ )        
     % Display a warning message to allow the user to cancel
@@ -208,7 +217,7 @@ function Morse()
             'Select OK to proceed or Exit cancel.']; 
         
     % Call the function to display the message box
-        userAction = WarningWindow(windowsPrefs,messageString);
+        userAction = WarningWindow(messageString);
      
     % User didn't cancel so do it, otherwise just return
         if userAction == 1    

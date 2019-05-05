@@ -18,6 +18,7 @@ function TransmitAlphabet()
     
 % Set up workspace variables.
     alphaPrefs = allUsersPrefs{5,activeUserIndex};
+    space = 0;
     stopXmit = 0;
     firstTime = 0;
     
@@ -171,7 +172,14 @@ function TransmitAlphabet()
         'string', 'Exit',...
         'Callback', @CloseRequestCallback ...
     );
-        
+
+%%  Open Flasher window if enabled --------------------------------
+    if glob.flasherEnabled == 1
+        FlasherHandle = FlasherWindow();
+        pause(.3);
+        figure(AlphabetWinHandle);
+    end
+
 %%  Xmit Alphabet Processing --------------------------------------
 % This function is called by the StartStopCallback when the 
 % Start Transmission button is selected
@@ -189,6 +197,7 @@ function TransmitAlphabet()
             characterIndex = 0;
             firstXmitAlpha = 1;
             groupCount = 0;
+            space = 0;
         end
         
     %  Output the CodeTable a character at a time;
@@ -212,12 +221,14 @@ function TransmitAlphabet()
                 groupCount = groupCount + 1;
                 if groupMin == groupMax  % Fixed group Size           
                     if groupCount > groupMax% Send a space
+                        space = 1;
                         saveCharacterIndex = characterIndex;
                         characterIndex = 60;
                         groupCount = 0;
                     end
                 else    % Random group size
                     if groupCount > currentGroupSize  % Send a space
+                        space = 1;
                         saveCharacterIndex = characterIndex;
                         characterIndex = 60;
                         groupCount = 0;
@@ -228,7 +239,14 @@ function TransmitAlphabet()
 
             currentCharacter = codeTable{characterIndex,1};
             currentCharacterName = codeTable{characterIndex,4};
+            codeGroup = codeTable{characterIndex,2};
             sentString = [sentString ' ' currentCharacter];
+            
+            if glob.flasherEnabled == 1
+                if space == 0
+                    FlasherTask(FlasherHandle, glob.dotTime, codeGroup);
+                end
+            end
             
             % Update the displays
             set(XmitCharacterHandle, 'string', currentCharacter );
@@ -239,7 +257,7 @@ function TransmitAlphabet()
             % Transmit the character
             player = audioplayer(codeTable{characterIndex,6}, sampleRate);
             playblocking(player);
-            
+            space = 0;
             if characterIndex == 60
                 characterIndex = saveCharacterIndex-1;
             end
@@ -247,8 +265,10 @@ function TransmitAlphabet()
         
     % Stopped transmitting. Clear transmit character display of last
     % sent character        
-        set(XmitCharacterHandle, 'string', ' ' );
-        set(XmitCharacterNameHandle, 'string', ' ' );
+        if ishandle(XmitCharacterHandle)
+            set(XmitCharacterHandle, 'string', ' ' );
+            set(XmitCharacterNameHandle, 'string', ' ' );
+        end
         stopXmit = 0;
         
     end % end XmitAlphabet
@@ -259,7 +279,7 @@ function TransmitAlphabet()
             messageString = [' Cant change Default User.',...
                 ' Change to another user or add a new user',...
                 ' from main window drop down menu - User Preferences'];
-            WarningWindow(windowsPrefs,messageString);
+            WarningWindow(messageString);
             return
         else
            AlphabetPreferences(AlphabetWinHandle);
@@ -282,6 +302,16 @@ function TransmitAlphabet()
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
         stopXmit = 1;
+        
+    % Close Flasher window if enabled
+        if glob.flasherEnabled == 1
+            if ishandle(FlasherHandle)
+                pause(2);
+                close(FlasherHandle);
+            end
+        end
+        
+    % Finish closing
         CloseWindow()
     end % end CloseRequestCallback
 

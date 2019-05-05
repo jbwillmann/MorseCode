@@ -3,11 +3,21 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
 % alphaPrefs.  Also some "global" variables which need to be persistent
 % and saved between sessions.
 
+% Values for the default user
+    defaultCodeSpeed = 12;
+    defaultWordSpeed = 6;
+    defaultFrequency = 400;
+
 % "Global" variables
-    glob.saveWindows = 1;       % set to 1 to save window position on close,
+    glob.saveWindows = 1;       % 1 to save window position on close,
     glob.scaleFactor = 1.;      % scale factor for all windows,
+    glob.displayFlasher = 1;    % Display Flasher Window
     glob.selectedUserIndex = 2;      % set to default user index,
     glob.selectedUserName = 'Default User';
+    glob.dotTime = round(1./defaultCodeSpeed,2);
+    glob.flasherEnabled = 0;    % Off by default, 1 to enable       
+    glob.flasherOn = [.255 .627 .225];  % Green
+    glob.flasherOff = [1  1  1];         % White
 
 % Create alphabet transmit default preferences
     % 1 = Alphabet=26, 2 = +Numbers = 36, 3 = +Punctuation = 53,
@@ -25,8 +35,10 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
         'AlphabetPrefs'; 'AudioFile';'FileUserCopied';'KeyboardInFile';...
         'SelectedUser'};
 
-    allUsersPrefs(1:9,2) = {'DefaultUser'; 12; 6; 400; alphaPrefs ;...
-        'AudioFile1.wav';'FileUserCopied1.txt';'KeyboardInFile1.txt';1};
+    allUsersPrefs(1:9,2) = {'DefaultUser'; defaultCodeSpeed;...
+        defaultWordSpeed; defaultFrequency; alphaPrefs;...
+        'AudioFile1.wav';'FileUserCopied1.txt';...
+        'KeyboardInFile1.txt';1};
         
 % Get some GUI windows parameters
 % First get the monitor size
@@ -46,7 +58,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     TextHeight = round(3*size/126,1);   % Text Height
 
 % Create windowsPrefs cell array
-    windowsPrefs = cell(8,12);    
+    windowsPrefs = cell(8,14);    
     windowsPrefs(1:8,1) = {'WindowName'; 'ScaleFactor';...
         'Left'; 'Bottom'; 'Width'; 'Height';...
         'TextFont'; 'TextHeight'};   
@@ -71,7 +83,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
      windowsPrefs(1:8,8) = {'Window Preferences'; 1; WindowLeft+18;...
         WindowBottom; round(.82*WindowWidth); round(.9*WindowHeight);...
         round(TextFont,1); round(TextHeight,1)};   
-     windowsPrefs(1:8,9) = {'WarningWindow'; 1; WindowLeft+21;...
+     windowsPrefs(1:8,9) = {'Warning Window'; 1; WindowLeft+21;...
          WindowBottom; round(.7*WindowWidth); round(1*WindowHeight);...
         round(TextFont,1); round(TextHeight,1)};   
     windowsPrefs(1:8,10) = {'Code Table'; 1; WindowLeft+24;...
@@ -82,6 +94,12 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
         round(TextFont,1); round(TextHeight,1)};     
     windowsPrefs(1:8,12) = {'About'; 1; WindowLeft+30;...
         WindowBottom; round(.64*WindowWidth); round(.6*WindowHeight);...
+        round(TextFont,1); round(TextHeight,1)}; 
+    windowsPrefs(1:8,13) = {'Flasher'; 1; WindowLeft+33;...
+        WindowBottom; round(.6*WindowWidth); round(.6*WindowHeight);...
+        round(TextFont,1); round(TextHeight,1)}; 
+    windowsPrefs(1:8,14) = {'Flasher Preferences'; 1; WindowLeft+36;...
+        WindowBottom; round(.82*WindowWidth); round(.9*WindowHeight);...
         round(TextFont,1); round(TextHeight,1)}; 
 
 end % end CreatePrefsArray

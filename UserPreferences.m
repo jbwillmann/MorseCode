@@ -373,6 +373,12 @@ function UpdateUserCallback(src, ~, num)
             set(WordSpeedHandle,'string',' ');
             set(FrequencyHandle,'string',' ');  
             
+            % Update glob variables
+            selectedUserName = allUsersPrefs{1, userSelect};
+                glob.selectedUserName = selectedUserName;
+                glob.selectedUserIndex = userSelect;
+                glob.dotTime = round(1./allUsersPrefs{2, userSelect},2);
+                
             % Update all the files
             save('ProgramData/PreferencesFile.mat',...
                 'allUsersPrefs', 'windowsPrefs','glob');
@@ -392,6 +398,7 @@ function UpdateUserCallback(src, ~, num)
                 selectedUserName = allUsersPrefs{1, userSelect};
                 glob.selectedUserName = selectedUserName;
                 glob.selectedUserIndex = userSelect;
+                glob.dotTime = round(1./allUsersPrefs{2, userSelect},2);
                 set(UserDisplayHandle,'string',...
                     ['Current Selected User:  ' selectedUserName]);
                 save('ProgramData/PreferencesFile.mat',...

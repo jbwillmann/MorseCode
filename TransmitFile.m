@@ -19,7 +19,7 @@ function TransmitFile()
 % Set up workspace variables.   
     userName = allUsersPrefs{1,activeUserIndex}; 
     stopXmit = 0;
-    firstTime = 0;    
+    firstTime = 0;
     saveAudioFile = 0;
     firstXmitFile = 0;
     baseFileName = ' ';
@@ -42,7 +42,7 @@ function TransmitFile()
     white = [1  1  1];
 
 %   figure window
-    figure(...
+    TransmitFileHandle = figure(...
         'CloseRequestFcn',@CloseRequestCallback,...
         'Units', 'Characters',...
         'Position',[windowsPrefs{3,4},windowsPrefs{4,4},...
@@ -52,8 +52,7 @@ function TransmitFile()
         'Name', 'Transmit File'...
     );
       
-%   Set up Application title
-    
+%   Set up Application title   
     TitleHandle = uicontrol('Style', 'text',...
         'Units', 'normalized',...
         'Position', [ 0 .89 1 .1 ],...
@@ -150,7 +149,14 @@ function TransmitFile()
         'string', 'Exit',...
         'Callback', @CloseRequestCallback ...
     );
-        
+
+%%  Open Flasher window if enabled --------------------------------
+    if glob.flasherEnabled == 1
+        FlasherHandle = FlasherWindow();
+        pause(.3);
+        figure(TransmitFileHandle);
+    end
+
 %%  SelectInputFileCallback ---------------------------------------
     function SelectInputFileCallback(~, ~, ~)
 
@@ -178,7 +184,6 @@ function TransmitFile()
 %%  XmitFile ------------------------------------------------------
     function XmitFile
     %Transmits the chosen file.
-
     % Setup some variables
         persistent  charCount
         persistent  sentFileString
@@ -194,11 +199,15 @@ function TransmitFile()
 
             charCount = charCount + 1;
             currentCharacter = textFileToSend(charCount);
-
+            space = 0;
                 for m=1:60
                     if currentCharacter == codeTable{m,1}
                         waveFile = codeTable{m,6};
                         currentCharacterName = codeTable(m,4);
+                        codeGroup = codeTable{m,2};
+                        if m == 60
+                            space = 1;
+                        end
                         break
                     end
                 end
@@ -210,21 +219,27 @@ function TransmitFile()
             set(XmitCharacterHandle, 'string', currentCharacter );
             set(XmitStringHandle, 'string', sentFileString );
             drawnow
-
+            
+            if glob.flasherEnabled == 1
+                if space == 0
+                    FlasherTask(FlasherHandle, glob.dotTime, codeGroup);
+                end
+            end
+            
             % Transmit the character
             player = audioplayer(waveFile, sampleRate);
             playblocking(player);
-
+                    
             % Write to the audio file if checked
             if saveAudioFile == 1
                 audioFileToRecord = [audioFileToRecord, waveFile];              
             end
-            
+
             % Exit when the end of file is reached
             if charCount > numberToSend
                 stopXmit = 1;
             end
-        end
+        end % end while stopXmit == 0
         
         % Save the audio file if it was generated
         if saveAudioFile == 1
@@ -234,8 +249,10 @@ function TransmitFile()
 
     % Stopped transmitting. Clear transmit character display of last
     % sent character
-        set(XmitCharacterHandle, 'string', ' ' );
-        set(XmitCharacterNameHandle, 'string', ' ' );
+        if ishandle(XmitCharacterHandle)
+            set(XmitCharacterHandle, 'string', ' ' );
+            set(XmitCharacterNameHandle, 'string', ' ' );
+        end
         stopXmit = 0;
 
     end % end XmitFile
@@ -261,6 +278,16 @@ function TransmitFile()
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
         stopXmit = 1;
+
+    % Close Flasher window if enabled
+        if glob.flasherEnabled == 1
+            if ishandle(FlasherHandle)
+                pause(2);
+                close(FlasherHandle);
+            end
+        end
+        
+    % Finish closing
         CloseWindow()
     end % end CloseRequestCallback
 
