@@ -47,7 +47,7 @@ function TransmitKeyboard
     white = [1  1  1];
 
 %   figure window
-    figure(...
+    TransmitKeyboardHandle = figure(...
         'CloseRequestFcn',@CloseRequestCallback,...
         'Units', 'Characters',...
         'Position',[windowsPrefs{3,5},windowsPrefs{4,5},...
@@ -149,6 +149,13 @@ function TransmitKeyboard
         'Callback', @CloseRequestCallback ...
     );
 
+%%  Open Flasher window if enabled --------------------------------
+    if glob.flasherEnabled == 1
+        FlasherHandle = FlasherWindow();
+        pause(.3);
+        figure(TransmitKeyboardHandle);
+    end
+
 %% Set up a timer  ------------------------------------------------
     TimerHandle = timer(...
         'TimerFcn',@TimerTaskCallback,...
@@ -171,7 +178,7 @@ function TransmitKeyboard
             transmittingOn = 0;
             characterInCount = 0;   % Number of valid input characters
             sentKbdString = [];         % Transmitted string
-            inputString = cell(3,1);    % Clear input array          
+            inputString = cell(4,1);    % Clear input array          
             displayInputString = [];    % To display typed input
             drawnow nocallbacks 
             return
@@ -215,7 +222,8 @@ function TransmitKeyboard
                 characterInCount = characterInCount+1;
                 inputString{1,characterInCount} = typedCharacter; 
                 inputString{2,characterInCount} = codeTable{m,6}; 
-                inputString{3,characterInCount} = codeTable{m,4}; 
+                inputString{3,characterInCount} = codeTable{m,4};
+                inputString{4,characterInCount} = codeTable{m,2};
                 Found = 1;
                 break
             end
@@ -260,6 +268,7 @@ function TransmitKeyboard
         characterIn = inputString{1,1};        
         waveFile = inputString{2,1};
         currentCharacterName = inputString{3,1};
+        codeGroup = inputString{4,1};
         
     % remove the first entry and reduce the character count
         inputString = inputString(:,2:characterInCount);
@@ -277,6 +286,13 @@ function TransmitKeyboard
         set(XmitCharacterNameHandle, 'string', currentCharacterName );
         set(XmitStringHandle, 'string',  sentKbdString );
         drawnow nocallbacks 
+        
+        if glob.flasherEnabled == 1
+            isSpace = strcmp(currentCharacterName, 'Space');
+            if ~isSpace
+                FlasherTask(FlasherHandle, glob.dotTime, codeGroup);
+            end
+        end    
 
     % Transmit the character
         player = audioplayer(waveFile, sampleRate);
@@ -286,6 +302,14 @@ function TransmitKeyboard
                   
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
+        % Close Flasher window if enabled
+        if glob.flasherEnabled == 1
+            if ishandle(FlasherHandle)
+                pause(.2);
+                close(FlasherHandle);
+            end
+        end
+        
         % Stop the timer
         stop(TimerHandle);
         delete(TimerHandle);    

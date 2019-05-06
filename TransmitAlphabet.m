@@ -306,7 +306,7 @@ function TransmitAlphabet()
     % Close Flasher window if enabled
         if glob.flasherEnabled == 1
             if ishandle(FlasherHandle)
-                pause(2);
+                pause(.2);
                 close(FlasherHandle);
             end
         end

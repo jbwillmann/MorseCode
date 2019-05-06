@@ -1,12 +1,12 @@
-function myReturn = FlasherTask(FlasherHandle, dotTime, codeGroup)
+function FlasherTask(FlasherHandle, dotTime, codeGroup)
 %FlasherTask Controls the display in the Flasher window.
 %   Detailed explanation goes here
 
 %% Initialize the user variables ----------------------------------
-    myReturn = 0;
+% Load the PreferencesFile.mat file from the ProgramData directory.
+    load('ProgramData/PreferencesFile.mat',...
+        'allUsersPrefs', 'windowsPrefs', 'glob');
 
-    green = [.255 .627 .225];     
-    white = [1  1  1]; 
     dotTime = dotTime+.02;
     numberCharacters = size(codeGroup, 2);
     characterCount = 1;
@@ -18,7 +18,7 @@ function myReturn = FlasherTask(FlasherHandle, dotTime, codeGroup)
                 flashTime = 3*dotTime;
         end 
         
-        set(FlasherHandle, 'Color', green);
+        set(FlasherHandle, 'Color', glob.flasherOn);
 
     startFlash = 0;
     
@@ -35,14 +35,14 @@ function myReturn = FlasherTask(FlasherHandle, dotTime, codeGroup)
     function TimerTaskCallback(~,~)
 
         if numberCharacters == characterCount 
-            set(FlasherHandle, 'Color', white);
+            set(FlasherHandle, 'Color', glob.flasherOff);
             stop(TimerHandle);
             delete(TimerHandle);
             return
         end
         
         if startFlash == 0
-            set(FlasherHandle, 'Color', white);
+            set(FlasherHandle, 'Color', glob.flasherOff);
             stop(TimerHandle);
             delete(TimerHandle);
             
@@ -62,7 +62,7 @@ function myReturn = FlasherTask(FlasherHandle, dotTime, codeGroup)
             case '-'
                 flashTime = 3*dotTime;
         end
-        set(FlasherHandle, 'Color', green);
+        set(FlasherHandle, 'Color', glob.flasherOn);
         stop(TimerHandle);
         delete(TimerHandle);
             
