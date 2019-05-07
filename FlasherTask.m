@@ -10,21 +10,33 @@ function FlasherTask(FlasherHandle, dotTime, codeGroup)
     dotTime = dotTime+.02;
     numberCharacters = size(codeGroup, 2);
     characterCount = 1;
+    isSpace = 0;
     firstDigit = codeGroup(characterCount);
         switch firstDigit
             case '.'
                 flashTime = dotTime; 
             case '-'
                 flashTime = 3*dotTime;
+            case ' '
+                flashTime = dotTime;
+                isSpace = 1;
+            otherwise
+                return
         end 
         
-        set(FlasherHandle, 'Color', glob.flasherOn);
+        if isSpace == 1
+            set(FlasherHandle, 'Color', glob.flasherOff);
+            isSpace = 0;
+        else
+            set(FlasherHandle, 'Color', glob.flasherOn);
+        end
 
     startFlash = 0;
     
 %% Set up a timer  ------------------------------------------------
     TimerHandle = timer(...
         'TimerFcn', @TimerTaskCallback,...
+        'BusyMode', 'queue',...
         'StartDelay', flashTime ...
     );
 
@@ -56,13 +68,26 @@ function FlasherTask(FlasherHandle, dotTime, codeGroup)
         end
         characterCount = characterCount + 1;          
         nextDigit = codeGroup(characterCount);
+        isSpace = 0;
         switch nextDigit
             case '.'
                 flashTime = dotTime; 
             case '-'
                 flashTime = 3*dotTime;
+            case ' '
+                flashTime = dotTime;
+                isSpace = 1;
+            otherwise
+                return
         end
-        set(FlasherHandle, 'Color', glob.flasherOn);
+        
+        if isSpace == 1
+            set(FlasherHandle, 'Color', glob.flasherOff);
+            isSpace = 0;
+        else
+            set(FlasherHandle, 'Color', glob.flasherOn);
+        end
+        
         stop(TimerHandle);
         delete(TimerHandle);
             

@@ -21,11 +21,10 @@ function TransmitKeyboard
     sampleRate = frequency*200; % 200 is samples per cycle
 
 % Set up workspace variables.
-    TimerHandle = [];
     transmittingOn = 0;
     characterInCount = 0;   % Number of valid Morse input characters typed
     sentKbdString = [];         % Transmitted string
-    inputString = cell(3,1);    % Clear input array
+    inputString = cell(4,1);    % Clear input array
     displayInputString = [];    % To display typed input
     defaultString = ['To send code just begin typing. '...
     'All input is converted to caps and the only special '...
@@ -138,7 +137,7 @@ function TransmitKeyboard
         'string', ' '...
     );
 
-%% Action pushbuttons  --------------------------------------------
+%% Action pushbutton   --------------------------------------------
 %   Exit pushbutton
     uicontrol('Style', 'pushbutton',...
         'Units', 'normalized',...
@@ -155,16 +154,55 @@ function TransmitKeyboard
         pause(.3);
         figure(TransmitKeyboardHandle);
     end
+    
+%% Start the program
+TxLoop()
 
-%% Set up a timer  ------------------------------------------------
-    TimerHandle = timer(...
-        'TimerFcn',@TimerTaskCallback,...
-        'ExecutionMode','fixedSpacing',...
-        'Period', .3 ...
-    );
+%% Set up transmission loop  --------------------------------------
+    function TxLoop 
+        while transmittingOn
+        % If there are no characters to transmit then exit
+            if characterInCount < 1  
+                % Clear transmit character display of last sent character
+                set(XmitCharacterHandle, 'string', ' ');
+                set(XmitCharacterNameHandle, 'string', ' ' );
+                return
+            end
 
-    % Start the timer task
-        start(TimerHandle);
+        % We have a character to transmit. It's the first on the string
+            characterIn = inputString{1,1};        
+            waveFile = inputString{2,1};
+            currentCharacterName = inputString{3,1};
+            codeGroup = inputString{4,1};
+
+        % remove the first entry and reduce the character count
+            inputString = inputString(:,2:characterInCount);
+            characterInCount = characterInCount - 1;
+
+        % Remove the first character in the displayInputString and 
+        % add to the output string
+            displayInputString = ...
+                    displayInputString(1,2:size(displayInputString,2));           
+            sentKbdString = [sentKbdString ' ' characterIn];
+
+        % Update the displays
+            set(KbdStringHandle, 'string', displayInputString);
+            set(XmitCharacterHandle, 'string', characterIn);
+            set(XmitCharacterNameHandle, 'string', currentCharacterName );
+            set(XmitStringHandle, 'string',  sentKbdString );
+            drawnow % nocallbacks 
+            
+            if glob.flasherEnabled == 1
+                FlasherTask(FlasherHandle, glob.dotTime, codeGroup);
+            end
+            
+        % Transmit the character
+            player = audioplayer(waveFile, sampleRate);
+            playblocking(player);
+        
+        end % end while transmittingOn
+
+    end % end TxLoop
 
 %% KeyPressCallback -----------------------------------------------
     function KeyPressCallback(~, evnt)
@@ -201,6 +239,7 @@ function TransmitKeyboard
             if transmittingOn == 0              
                 transmittingOn = 1;
                 set(XmitControlHandle,'string', transmitControlOnString);
+                TxLoop()
             else
                 transmittingOn = 0;
                 pause(1);
@@ -241,64 +280,10 @@ function TransmitKeyboard
             displayInputString = [displayInputString  typedCharacter];
         end
         set(KbdStringHandle, 'string', displayInputString);
-        drawnow nocallbacks 
+        drawnow
+        TxLoop()
+        
     end % end KeyPressCallback
- 
-%% TimerTaskCallback ----------------------------------------------
-     function TimerTaskCallback(~,~)
-    %   This task is entered by the timer every .3 seconds to see if a 
-    %   new character has been added to InputString. If so it is
-    %   transmitted and the SentCount is increased and the bufferString
-    %   count is decreased. 
-    
-    % If transmitting is off then exit
-        if transmittingOn == 0  
-            return
-        end
-        
-    % If there are no characters to transmit then exit
-        if characterInCount < 1  
-            % Clear transmit character display of last sent character
-            set(XmitCharacterHandle, 'string', ' ');
-            set(XmitCharacterNameHandle, 'string', ' ' );
-            return
-        end
-
-    % We have a character to transmit. It's the first on the string
-        characterIn = inputString{1,1};        
-        waveFile = inputString{2,1};
-        currentCharacterName = inputString{3,1};
-        codeGroup = inputString{4,1};
-        
-    % remove the first entry and reduce the character count
-        inputString = inputString(:,2:characterInCount);
-        characterInCount = characterInCount - 1;
-        
-    % Remove the first character in the displayInputString and 
-    % add to the output string
-        displayInputString = ...
-                displayInputString(1,2:size(displayInputString,2));           
-        sentKbdString = [sentKbdString ' ' characterIn];
-  
-    % Update the displays
-        set(KbdStringHandle, 'string', displayInputString);
-        set(XmitCharacterHandle, 'string', characterIn);
-        set(XmitCharacterNameHandle, 'string', currentCharacterName );
-        set(XmitStringHandle, 'string',  sentKbdString );
-        drawnow nocallbacks 
-        
-        if glob.flasherEnabled == 1
-            isSpace = strcmp(currentCharacterName, 'Space');
-            if ~isSpace
-                FlasherTask(FlasherHandle, glob.dotTime, codeGroup);
-            end
-        end    
-
-    % Transmit the character
-        player = audioplayer(waveFile, sampleRate);
-        playblocking(player);
-
-     end % end TimerTaskCallback
                   
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
@@ -309,10 +294,7 @@ function TransmitKeyboard
                 close(FlasherHandle);
             end
         end
-        
-        % Stop the timer
-        stop(TimerHandle);
-        delete(TimerHandle);    
+           
         CloseWindow();
     end % end CloseRequestCallback
 
