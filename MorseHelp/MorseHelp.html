@@ -49,6 +49,7 @@
         <ul>
             <li>Completely redesigned user interface.</li>
             <li>Improved audio sound.</li>
+            <li>Added a visual display if the dots and dashes in sync with the audio.</li>
             <li>Multiple users with preferences saved between sessions.</li>
             <li>Automatically saving new window positions upon closing.</li>
             <li>Consistent naming conventions for variables, functions and callbacks.</li>
@@ -79,6 +80,9 @@
         <p>
             When Transmit Keyboard is selected, a window opens showing the keyboard entries and transmitted data. All input is converted to caps and the only special keys accepted are backspace, escape and F5. Backspace will delete the last keyboard input and Escape will clear all entries to start over. F5 is used to start and stop transmission. The imputed text is buffered and transmitted at the selected rates. 
         </p>
+        <p>
+            If the visual "Flasher" display is enabled, when any of the three transmission modes are used, a separate "Flasher" window is opened providing a visual display of the dots and dashes. The colors in the display can be customized through the Flasher Preferences drop down menu from the Morse window. The Flasher can also be enabled or disabled through this menu. The default value is disabled.
+        </p>
         <p> 
             From the menu bar under Help, selecting "Code Table" will display the code table built into the program. There are 60 entries in the table with the last being a word space. Selecting Help will display this file in the MatLab browser. Selecting About will provide author details and version number.
         </p>
@@ -93,7 +97,7 @@
            Each of these files is described in detail at <a href="#5.0">5.0 File and Program Structure</a>, however a few comments are appropriate here. 
         </p>
         <p>
-           First, put the folder in your preferred location. You can change the name of the folder if you like. Next open MatLab and navigate to that folder. Then run the main file, Morse.m. The first time it is run it will initialize the program by creating the ProgramData directory and the UserData directory and the main window will open and you will be ready to proceed.
+           First, put the folder in your preferred location. You can change the name of the folder if you like. Next open MatLab and navigate to that folder. Then run the main file, Morse.m. The first time it's run it will initialize the program by creating the ProgramData directory and the UserData directory. Next it will create the default CodeTableFile.mat and the PreferencesFile.mat in the ProgramData directory. Then the main window will open and you will be ready to proceed.
             
         </p>
         <h3 id="4.0">4.0 User Interface</h3>
