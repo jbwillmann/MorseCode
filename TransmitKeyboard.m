@@ -16,10 +16,6 @@ function TransmitKeyboard
         end
     end
     
-% Set some audio variables.
-    frequency = allUsersPrefs{4,activeUserIndex};
-    sampleRate = frequency*200; % 200 is samples per cycle
-
 % Set up workspace variables.
     transmittingOn = 0;
     characterInCount = 0;   % Number of valid Morse input characters typed
@@ -36,7 +32,11 @@ function TransmitKeyboard
         'Use F5 to toggle Transmit On/Off. Current status - Off';
     transmitControlOnString = ...
         'Use F5 to toggle Transmit On/Off. Current status - On';
-    
+   
+    % Set some audio variables.
+    frequency = allUsersPrefs{4,activeUserIndex};
+    sampleRate = frequency*200; % 200 is samples per cycle
+
 %% Set up main user interface  ------------------------------------
 % Setup GUI parameters
     windowWidth = windowsPrefs{5,5};
@@ -155,7 +155,7 @@ function TransmitKeyboard
         figure(TransmitKeyboardHandle);
     end
     
-%% Start the program
+%% Start the program ----------------------------------------------
 TxLoop()
 
 %% Set up transmission loop  --------------------------------------
