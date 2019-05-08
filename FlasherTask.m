@@ -2,6 +2,12 @@ function FlasherTask(FlasherHandle, dotTime, codeGroup)
 %FlasherTask Controls the display in the Flasher window.
 %   Detailed explanation goes here
 
+%% Make sure there is a flasher window ---------------------------
+% If the window has been closed just return
+    if ~ishandle(FlasherHandle)
+        return
+    end
+    
 %% Initialize the user variables ----------------------------------
 % Load the PreferencesFile.mat file from the ProgramData directory.
     load('ProgramData/PreferencesFile.mat',...
@@ -101,4 +107,3 @@ function FlasherTask(FlasherHandle, dotTime, codeGroup)
     end % end TimerTaskCallback
 
 end % end FlasherTask
-

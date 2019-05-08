@@ -385,12 +385,17 @@
         <p>
             When either the speed or frequency is changed, this process is repeated so there is a new CodeTable constructed to use with the new settings. The process of transmission consist of taking each character of the input stream and sending the wave file associated with that character to the standard audio output using waveplay. Because waveplay does not return until the sample is sent, when sending the alphabet or a loaded text string, the function XmitAlphabet in TransmitAlphabet.m and XmitFile in TransmitFile.m just loop through all of the characters until completed.
         </p>
-        
         <p>
-            Transmitting from the keyboard is a bit more complicated. Calling TransmitAlphabet.m opens that window and starts a timer task and  activates the KeyPressFunction. There are 3 special characters the program uses for control. F5 is used to toggle transmission on or off. Escape is used to clear and reset the entries. Backspace is used to clear a keyboard entry while it is in the keyboard entry buffer. If any other character is typed that is not a valid Morse character, the entry is discarded. Otherwise, the character is put into a 2xn cell array InputString. In row 1 is the character and in row 2 is the wave file for that character. 
-            All the while this input is going on, the timer task is looking at the InputString to see if there is a new character. It is transmitted if transmission is enabled. The timer task continues and repeats this process until it runs out of characters or transmission is manually stopped.
+            There is a function called the Flasher task. If it is enabled via the Flasher Preferences, then whenever any of the three transmission modes are chosen, a Flasher window will also open. In this window will be a visual display of the transmitted tones. The colors of the on or off display can be selected also through the Flasher Preferences. The flasher window is the only window in the application that can be resized. Like all windows in the application, its current position and size will be saved on closing.
         </p>
-
+        <p>
+            Transmitting from the keyboard is a bit more complicated than the other two modes. Calling TransmitAlphabet.m opens that window, activates the KeyPressFunction and starts a while loop which monitors the keyboard input stream to process all typed characters. There are 3 special characters the program uses for control. F5 is used to toggle transmission on or off. Escape is used to clear and reset the entries. Backspace is used to clear a keyboard entry while it is in the keyboard entry buffer. If any other character is typed that is not a valid Morse character, the entry is discarded.
+            
+        </p>
+            The  input character is put into a 4xn cell array InputString. In row 1 is the character, row 2 is the wave file for that character and in row 3 is the name of the character. Row 4 contains the codegroup, the text string of the dots and dashes, used by the flasher task if it is enabled. All the while this input is going on, the while loop is looking at the InputString to see if there is a new character. It is transmitted if transmission is enabled. This continues until it runs out of characters or transmission is manually stopped.
+        <p>
+            
+        </p>
         <h3 id="7.0">7.0 Change Log</h3>
         
         <p>
