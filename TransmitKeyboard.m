@@ -197,7 +197,7 @@ TxLoop()
             end
             
         % Transmit the character
-            player = audioplayer(waveFile, sampleRate);
+            player = audioplayer(glob.volume*waveFile, sampleRate);
             playblocking(player);
         
         end % end while transmittingOn

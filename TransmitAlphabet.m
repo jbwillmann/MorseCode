@@ -255,7 +255,7 @@ function TransmitAlphabet()
             drawnow
 
             % Transmit the character
-            player = audioplayer(codeTable{characterIndex,6}, sampleRate);
+            player = audioplayer(glob.volume*codeTable{characterIndex,6}, sampleRate);
             playblocking(player);
             space = 0;
             if characterIndex == 60

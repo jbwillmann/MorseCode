@@ -15,7 +15,7 @@ function CloseWindow(~,~)
         bottomPosition = pos(2);
         currentWindowName = get(gcf, 'Name');
 
-        for index = 2:14
+        for index = 2:13
             windowName = windowsPrefs(1,index);
             if strcmp(windowName, currentWindowName)
                 windowsPrefs{3,index} = leftPosition;

@@ -227,7 +227,7 @@ function TransmitFile()
             end
             
             % Transmit the character
-            player = audioplayer(waveFile, sampleRate);
+            player = audioplayer(glob.volume*waveFile, sampleRate);
             playblocking(player);
                     
             % Write to the audio file if checked
