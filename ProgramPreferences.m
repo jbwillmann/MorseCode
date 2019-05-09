@@ -57,7 +57,7 @@ function ProgramPreferences()
         'BackgroundColor',white,'HorizontalAlignment','center',...
         'string', '  Save Window Position on exit',...
         'Style','check','Value',glob.saveWindows,...
-        'Callback', @CheckBoxCallback ...
+        'Callback', @SavePositionCallback ...
     );
 
 % Create uicontrol to display scale factor
@@ -92,8 +92,8 @@ function ProgramPreferences()
         'Position', [ .58 .53 .1 .07 ],...
         'FontSize', textFont,'FontWeight','bold',...
         'BackgroundColor',white,'HorizontalAlignment','center',...
-        'string', num2str(glob.scaleFactor,4),...
-        'callback', @ScaleCallback...
+        'string', num2str(glob.volume,4),...
+        'callback', @AudioCallback...
     );
 
 % Create uicontrol checkbox for enabling the Flasher function
@@ -158,17 +158,9 @@ function ProgramPreferences()
         'callback', @CloseRequestCallback...
     );
 
-%% Callbacks ------------------------------------------------------
-% saveWinCallback
-% Save the updated variables
-    function saveWinCallback(~,~)
-        save('ProgramData/PreferencesFile.mat',...
-            'allUsersPrefs', 'windowsPrefs', 'glob');
-        CloseWindow()
-    end
-           
+%% Callbacks ------------------------------------------------------       
  % CheckBoxCallback
-    function CheckBoxCallback(src , ~)
+    function SavePositionCallback(src , ~)
         glob.saveWindows = get(src,'Value');
     end
 
@@ -177,9 +169,14 @@ function ProgramPreferences()
        glob.scaleFactor = str2double(get(src,'String'));
     end
 
- % CloseRequestCallback 
-    function CloseRequestCallback(~, ~)
-        CloseWindow()
+% AudioCallback
+    function AudioCallback(src , ~)
+        inputValue = str2double(get(src,'String'));
+        if inputValue <= 1
+            glob.volume = str2double(get(src,'String'));
+        else
+            set(src, 'String', ' ');
+        end
     end
 
  % FlasherCallback
@@ -200,8 +197,19 @@ function ProgramPreferences()
                     'Select an Off Color');
                 set(OffHandle, 'BackgroundColor',selectedColor);
                 glob.flasherOff = selectedColor;
-        end % switch
+        end % switch   
+    end
 
+% Save the updated variables
+    function saveWinCallback(~,~)
+        save('ProgramData/PreferencesFile.mat',...
+            'allUsersPrefs', 'windowsPrefs', 'glob');
+        CloseWindow()
+    end
+ 
+ % CloseRequestCallback 
+    function CloseRequestCallback(~, ~)
+        CloseWindow()
     end
 
 end % end ProgramPreferences
