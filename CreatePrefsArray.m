@@ -17,8 +17,13 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     glob.selectedUserName = 'Default User';
     glob.dotTime = round(1./defaultCodeSpeed,2);
     glob.flasherEnabled = 0;    % Off by default, 1 to enable       
-    glob.flasherOn = [.851 .325 .098];   % Red
-    glob.flasherOff = [1  1  1];         % White
+    glob.flasherOn = [.851 .325 .098];          % Red
+    glob.flasherOff = [1  1  1];                % White
+    glob.foregroundColor = [.16 .39 .16];       % Green
+    glob.backgroundColor = [.920 .920 .920];    % Grey
+    glob.boxColor = [.95 .95 .95];              % White
+    glob.figureColor = [.99 .99 .99];           % White
+    glob.xmitBackgroundColor = [.80 .95 .80];   % Light Green
 
 % Create alphabet transmit default preferences
     % 1 = Alphabet=26, 2 = +Numbers = 36, 3 = +Punctuation = 53,
