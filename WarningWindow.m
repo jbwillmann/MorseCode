@@ -1,7 +1,8 @@
 function userAction = WarningWindow(messageString)
-%  This function creates a new warning figure and 
-%  returns 1 if the user selects OK, otherwise it returns 0.
+%  This function creates a new warning figure and returns 1 if     
+%  the user selects OK, otherwise it returns 0.
 
+%% Initialize the user variables ----------------------------------
 % Load the preferences file.
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
@@ -11,6 +12,7 @@ function userAction = WarningWindow(messageString)
     windowHeight =  windowsPrefs{6,9};
     textFont = windowsPrefs{7,9};
 
+%% Set up main user interface  ------------------------------------
 % Create the figure
     WarningHandle = figure(...
         'CloserequestFcn', {@ActionCallback, 0},...
@@ -43,6 +45,7 @@ function userAction = WarningWindow(messageString)
         'string',messageString ...
     ); 
 
+%% Action pushbuttons  --------------------------------------------
 %   OK pushbutton
     uicontrol('Style', 'pushbutton',...
         'Units', 'normalized',...
@@ -70,7 +73,7 @@ function userAction = WarningWindow(messageString)
 % Wait for the operator to respond before returning
     uiwait(WarningHandle);
 
- % ActionCallback Callback  
+%% ActionCallback Callback  
     function ActionCallback(~, ~, num)
         % Define the return argument
         switch num

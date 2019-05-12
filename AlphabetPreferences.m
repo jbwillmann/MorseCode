@@ -6,20 +6,15 @@ function AlphabetPreferences(AlphabetWinHandle)
 % This loads the variable arrays allUsersPrefs and windowsPrefs
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
-  
-% Determine SelectedUser
-    numUsers = size(allUsersPrefs,2);  
-    for activeUserIndex = 2:numUsers
-        if allUsersPrefs{9,activeUserIndex} == 1
-            break;
-        end
-    end
+
+% Setup Current User data
+    activeUserIndex = glob.selectedUserIndex;
+    userName = glob.selectedUserName;
 
 % Get the alpha preferences from the user file
     alphaPrefs = allUsersPrefs{5, activeUserIndex};
     
 % Initilize some variables and set defaults
-    userName = allUsersPrefs{1, activeUserIndex};
     alphaSelect = alphaPrefs.include;  %1 = Alphabet = 26,
         % +Numbers = 36,+Puncuation = 53, +Special Characters = 59
     sequentialSelect = alphaPrefs.format;   % 1 = continuous ; 2 = random

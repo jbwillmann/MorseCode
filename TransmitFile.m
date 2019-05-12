@@ -9,15 +9,11 @@ function TransmitFile()
 % Load the codeTable file.
     load('ProgramData/CodeTableFile.mat', 'codeTable');
 
-% Determine SelectedUser.
-    for activeUserIndex = 2:size(allUsersPrefs,2)
-        if allUsersPrefs{9,activeUserIndex} == 1
-            break;
-        end
-    end
+% Setup Current User data
+    activeUserIndex = glob.selectedUserIndex;
+    userName = glob.selectedUserName;
     
 % Set up workspace variables.   
-    userName = allUsersPrefs{1,activeUserIndex}; 
     stopXmit = 0;
     firstTime = 0;
     saveAudioFile = 0;

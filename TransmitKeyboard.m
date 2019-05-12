@@ -9,12 +9,8 @@ function TransmitKeyboard
 % Load the CodeTableFile.
     load('ProgramData/CodeTableFile.mat', 'codeTable');
 
-% Determine Selected User.
-    for activeUserIndex = 2:size(allUsersPrefs,2)
-        if allUsersPrefs{9,activeUserIndex} == 1
-            break;
-        end
-    end
+% Setup Current User data
+    activeUserIndex = glob.selectedUserIndex;
     
 % Set up workspace variables.
     transmittingOn = 0;
