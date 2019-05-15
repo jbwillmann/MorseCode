@@ -283,15 +283,7 @@ function TransmitAlphabet()
 
 %%  SelectModeCallback --------------------------------------------
     function SelectModeCallback(~, ~, ~)
-        if activeUserIndex == 2
-            messageString = [' Cant change Default User.',...
-                ' Change to another user or add a new user',...
-                ' from main window drop down menu - User Preferences'];
-            WarningWindow(messageString);
-            return
-        else
            AlphabetPreferences(AlphabetWinHandle);
-        end
     end % end SelectModeCallback
 
 %% StartStopCallback callback -------------------------------------

@@ -222,6 +222,9 @@ function UserPreferences()
      
 %% UpdateUserCallback ---------------------------------------------
 function UpdateUserCallback(src, ~, num)
+    
+    set(UserNameHandle,'enable','inactive');
+    
     switch num
         case 0  % Drop Down Menu
             dropdownSelect = get(src,'Value');
@@ -260,26 +263,7 @@ function UpdateUserCallback(src, ~, num)
                 set(DeletePushbuttonHandle,'enable','inactive');
             end
             
-            if dropdownSelect == 3  % Default user selected
-                set(UserNameHandle,'string',allUsersPrefs{1, userSelect});
-                set(CodeSpeedHandle,'string',allUsersPrefs{2, userSelect});
-                set(WordSpeedHandle,'string',allUsersPrefs{3, userSelect});
-                set(FrequencyHandle,'string',allUsersPrefs{4, userSelect});
-                set(UserNameHandle,'enable','inactive');
-                set(CodeSpeedHandle,'enable','inactive');
-                set(WordSpeedHandle,'enable','inactive');
-                set(FrequencyHandle,'enable','inactive');
-                set(SaveAddPushbuttonHandle,'string','');
-                set(SaveAddPushbuttonHandle,'enable','inactive');
-                set(DeletePushbuttonHandle,'string','');
-                set(DeletePushbuttonHandle,'enable','inactive');
-                if currentUserIndex > 2
-                    set(MakeActivePushbuttonHandle,'string','Make Active');
-                    set(MakeActivePushbuttonHandle,'enable','on');
-                end
-            end
-            
-            if dropdownSelect > 3
+            if dropdownSelect > 2
                 set(UserNameHandle,'string',allUsersPrefs{1, userSelect});
                 set(CodeSpeedHandle,'string',allUsersPrefs{2, userSelect});
                 set(WordSpeedHandle,'string',allUsersPrefs{3, userSelect});
@@ -289,12 +273,17 @@ function UpdateUserCallback(src, ~, num)
                 set(FrequencyHandle,'enable','on');
                 set(SaveAddPushbuttonHandle,'string','Save');
                 set(SaveAddPushbuttonHandle,'enable','on');
-                if currentUserIndex ~= userSelect
+                if currentUserIndex ~= userSelect %Didnt select active user
                     set(MakeActivePushbuttonHandle,'string','Make Active');
                     set(MakeActivePushbuttonHandle,'enable','on');
                 end
-                set(DeletePushbuttonHandle,'string','Delete');
-                set(DeletePushbuttonHandle,'enable','on');
+                if userSelect == 2  % Selected Default User
+                    set(DeletePushbuttonHandle,'string','');
+                    set(DeletePushbuttonHandle,'enable','inactive');
+                else
+                    set(DeletePushbuttonHandle,'string','Delete');
+                    set(DeletePushbuttonHandle,'enable','on');
+                end
                 
             end   
             
@@ -303,14 +292,12 @@ function UpdateUserCallback(src, ~, num)
             inputCount(1) = 1;
             if dropdownSelect == 2  % Add new user
                 tempNewUser{1} = userName;
-            else
-                allUsersPrefs{1, userSelect} = userName;
             end
 
         case 2  % Code Speed
             codeSpeed = str2double(get(src,'String'));
             if isnan(codeSpeed)
-                WarningWindow(windowsPrefs,numericWarning1);
+                WarningWindow(numericWarning1);
                 set(src,'String',' ');
                 inputCount(2) = 0;
                 return
@@ -359,7 +346,7 @@ function UpdateUserCallback(src, ~, num)
                 % operator
                 for index0 = 1:4
                     if inputCount(index0) ~= 1
-                        WarningWindow(windowsPrefs,numericWarning2);
+                        WarningWindow(numericWarning2);
                         return
                     end
                 end
@@ -373,6 +360,8 @@ function UpdateUserCallback(src, ~, num)
                 % Add the new user to the drop down menu
                 allUserNames = [allUserNames tempNewUser{1}];
                 
+                % Make the user name entry inactive
+                set(UserNameHandle,'enable','inactive');
                 
                 % Make a new directory if one doesnt already exist
                 newDir = ['UserData/' tempNewUser{1}];
@@ -389,19 +378,13 @@ function UpdateUserCallback(src, ~, num)
             set(CodeSpeedHandle,'string',' ');
             set(WordSpeedHandle,'string',' ');
             set(FrequencyHandle,'string',' ');  
-            
-            % Update glob variables
-            selectedUserName = allUsersPrefs{1, userSelect};
-                glob.selectedUserName = selectedUserName;
-                glob.selectedUserIndex = userSelect;
-                glob.dotTime = round(1./allUsersPrefs{2, userSelect},2);
-                
+                            
             % Update all the files
             save('ProgramData/PreferencesFile.mat',...
                 'allUsersPrefs', 'windowsPrefs','glob');
             
             % Update Morse.n if the current user is modified
-            if dropdownSelect > 3
+            if dropdownSelect > 2
                 if currentUserIndex ==  userSelect
                     delete(gcf)
                     delete(MorseFigHandle)
@@ -429,18 +412,23 @@ function UpdateUserCallback(src, ~, num)
             messageString = ...
                 ['This will delete the currently selected User. '...
                         'Select OK to procede or Exit to cancel']; 
-            warningAction = WarningWindow(windowsPrefs,messageString);
+            warningAction = WarningWindow(messageString);
         
             if warningAction == 1    % User didn't cancel so do it! 
                 % If the deleted user is the selected user, make the
                 % Default User the selected user.
-                if allUsersPrefs{9, userSelect} == 1
+
+                if userSelect == glob.selectedUserIndex
+                    allUsersPrefs{9, userSelect} = 0;
                     allUsersPrefs{9, 2} = 1;
+                    glob.selectedUserName = allUsersPrefs{1, 2};
+                    glob.selectedUserIndex = 2;
+                    glob.dotTime = round(1./allUsersPrefs{2, 2},2);
                 end
 
                 % Remove the Users folder and all files therein
                 dirToRemove = ...
-                    ['UserData/' allUserNames{userSelect}];
+                    ['UserData/' allUsersPrefs{1, userSelect};];
                 rmdir(dirToRemove, 's');
 
                 % Remove the user from the drop down menu

@@ -11,7 +11,7 @@ function Morse()
 % Load the PreferencesFile.mat file from the ProgramData directory.
     load('ProgramData/PreferencesFile.mat',...
         'allUsersPrefs', 'windowsPrefs', 'glob');
-
+    
 % Setup Current User data
     activeUserIndex = glob.selectedUserIndex;
     userName = glob.selectedUserName;
@@ -21,7 +21,7 @@ function Morse()
     wordSpeed = allUsersPrefs{3,activeUserIndex};
     frequency = allUsersPrefs{4,activeUserIndex};
     samplesPerCycle = 200;
-    codeTable = FillCodeTable(codeSpeed, wordSpeed,...
+   codeTable = FillCodeTable(codeSpeed, wordSpeed,...
         frequency, samplesPerCycle);
     
 % Save the codeTable to the CodeTableFile.mat file in the ProgramData
