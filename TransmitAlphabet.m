@@ -58,7 +58,9 @@ function TransmitAlphabet()
     sampleRate = frequency*200; % 200 is samples per cycle
     
 %% Set up main user interface  ------------------------------------
-% Setup GUI parameters     
+% Setup GUI parameters
+    windowLeft = windowsPrefs{3,3};
+    windowBottom = windowsPrefs{4,3};
     windowWidth = windowsPrefs{5,3};
     windowHeight =  windowsPrefs{6,3};
     textFont = windowsPrefs{7,3};
@@ -67,7 +69,7 @@ function TransmitAlphabet()
     AlphabetWinHandle = figure(...
         'CloserequestFcn',@CloseRequestCallback,...
         'Units', 'Characters',...
-        'Position', [ windowsPrefs{3,3}, windowsPrefs{4,3},...
+        'Position', [windowLeft, windowBottom,...
             windowWidth, windowHeight],...
         'NumberTitle', 'off','MenuBar', 'none','Resize', 'off',...
         'DockControls', 'off','Toolbar', 'none',...
@@ -182,9 +184,14 @@ function TransmitAlphabet()
     );
 
 %%  Open Flasher window if enabled --------------------------------
-    if glob.flasherEnabled == 1
-        FlasherHandle = FlasherWindow();
-        pause(.3);
+   if glob.flasherEnabled == 1
+        if glob.flasherDocking == 1
+            winPosition = get(gcf, 'Position');
+        else
+            winPosition = 0;
+        end
+        FlasherHandle = FlasherWindow(winPosition);
+        pause(.1);
         figure(AlphabetWinHandle);
     end
 

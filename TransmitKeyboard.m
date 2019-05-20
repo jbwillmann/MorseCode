@@ -13,6 +13,7 @@ function TransmitKeyboard
     activeUserIndex = glob.selectedUserIndex;
     
 % Set up workspace variables.
+    audioBusy = 0;
     transmittingOn = 0;
     characterInCount = 0;   % Number of valid Morse input characters typed
     sentKbdString = [];         % Transmitted string
@@ -35,6 +36,8 @@ function TransmitKeyboard
 
 %% Set up main user interface  ------------------------------------
 % Setup GUI parameters
+    windowLeft = windowsPrefs{3,5};
+    windowBottom = windowsPrefs{4,5};
     windowWidth = windowsPrefs{5,5};
     windowHeight =  windowsPrefs{6,5};
     textFont = windowsPrefs{7,5};
@@ -43,7 +46,7 @@ function TransmitKeyboard
     TransmitKeyboardHandle = figure(...
         'CloseRequestFcn',@CloseRequestCallback,...
         'Units', 'Characters',...
-        'Position',[windowsPrefs{3,5},windowsPrefs{4,5},...
+        'Position',[windowLeft, windowBottom,...
             windowWidth,windowHeight],...
         'KeyPressFcn',@KeyPressCallback,...
         'NumberTitle', 'off','MenuBar', 'none','Resize', 'off',...
@@ -156,8 +159,13 @@ function TransmitKeyboard
 
 %%  Open Flasher window if enabled --------------------------------
     if glob.flasherEnabled == 1
-        FlasherHandle = FlasherWindow();
-        pause(.3);
+        if glob.flasherDocking == 1
+            winPosition = get(gcf, 'Position');
+        else
+            winPosition = 0;
+        end
+        FlasherHandle = FlasherWindow(winPosition);
+        pause(.1);
         figure(TransmitKeyboardHandle);
     end
     
@@ -172,10 +180,13 @@ TxLoop()
                 % Clear transmit character display of last sent character
                 set(XmitCharacterHandle, 'string', ' ');
                 set(XmitCharacterNameHandle, 'string', ' ' );
+%                 transmittingOn = 0;
+%                 set(XmitControlHandle,'string', transmitControlOffString);
                 return
             end
 
         % We have a character to transmit. It's the first on the string
+            audioBusy = 1;
             characterIn = inputString{1,1};        
             waveFile = inputString{2,1};
             currentCharacterName = inputString{3,1};
@@ -206,6 +217,8 @@ TxLoop()
             player = audioplayer(glob.volume*waveFile, sampleRate);
             playblocking(player);
         
+            audioBusy = 0;
+            
         end % end while transmittingOn
 
     end % end TxLoop
@@ -281,13 +294,21 @@ TxLoop()
         
         % Display the character in the keyboard input display
         if characterInCount == 1    % First one
-            displayInputString = typedCharacter;          
+            displayInputString = typedCharacter;
+            for ind = 1:20
+                if audioBusy == 0
+                    TxLoop();
+                    return
+                else            
+                    pause(.04);
+                end
+            end
+            
         else
             displayInputString = [displayInputString  typedCharacter];
         end
         set(KbdStringHandle, 'string', displayInputString);
         drawnow
-        TxLoop()
         
     end % end KeyPressCallback
                   

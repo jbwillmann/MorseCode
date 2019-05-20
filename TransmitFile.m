@@ -31,6 +31,8 @@ function TransmitFile()
 
 %% Set up main user interface  ------------------------------------
 % Setup GUI parameters  
+    windowLeft = windowsPrefs{3,4};
+    windowBottom = windowsPrefs{4,4};
     windowWidth = windowsPrefs{5,4};
     windowHeight =  windowsPrefs{6,4};
     textFont = windowsPrefs{7,4};
@@ -39,7 +41,7 @@ function TransmitFile()
     TransmitFileHandle = figure(...
         'CloseRequestFcn',@CloseRequestCallback,...
         'Units', 'Characters',...
-        'Position',[windowsPrefs{3,4},windowsPrefs{4,4},...
+        'Position',[windowLeft, windowBottom,...
             windowWidth,windowHeight],...
         'NumberTitle', 'off','MenuBar', 'none','Resize', 'off',...
         'DockControls', 'off','Toolbar', 'none',...
@@ -161,8 +163,13 @@ function TransmitFile()
 
 %%  Open Flasher window if enabled --------------------------------
     if glob.flasherEnabled == 1
-        FlasherHandle = FlasherWindow();
-        pause(.3);
+        if glob.flasherDocking == 1
+            winPosition = get(gcf, 'Position');
+        else
+            winPosition = 0;
+        end
+        FlasherHandle = FlasherWindow(winPosition);
+        pause(.1);
         figure(TransmitFileHandle);
     end
 
@@ -245,7 +252,7 @@ function TransmitFile()
             end
 
             % Exit when the end of file is reached
-            if charCount > numberToSend
+            if charCount >= numberToSend
                 stopXmit = 1;
             end
         end % end while stopXmit == 0
