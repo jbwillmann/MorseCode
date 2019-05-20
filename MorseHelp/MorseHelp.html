@@ -27,10 +27,15 @@
           <li><a href="#4.0">4.0 User Interface</a>
           <ul>
             <li><a href="#4.1">4.1 Main Program Window</a></li>
-            <li><a href="#4.2">4.2 User Preferences Window</a></li>
-            <li><a href="#4.3">4.3 Transmit from Alphabet Window</a></li>
-            <li><a href="#4.4">4.4 Transmit From File Window</a></li>
-            <li><a href="#4.5">4.5 Transmit From Keyboard Window</a></li>
+            <ul>
+                <li><a href="#4.1.1">4.1.1 Drop Down Menu</a></li>
+                <li><a href="#4.1.2">4.1.2 User Preferences Window</a></li>
+                <li><a href="#4.1.3">4.1.3 Program Preferences Window</a></li>
+                <li><a href="#4.1.4">4.1.4 Color Preferences Window</a></li>
+            </ul>           
+            <li><a href="#4.2">4.2 Transmit from Alphabet Window</a></li>
+            <li><a href="#4.3">4.3 Transmit From File Window</a></li>
+            <li><a href="#4.4">4.4 Transmit From Keyboard Window</a></li>
           </ul>
         </li>
         <li><a href="#5.0">5.0 File and Program Structure</a></li>
@@ -111,7 +116,7 @@
         <a href="screenshots/MainProgramWindow.png">
             <img alt="A screenshot showing Main Program Window" src="screenshots/MainProgramWindow.png"/ width="500">
             
-        </a><h5>4.1.1 Drop Down Menu</h5>
+        </a><h5 id="4.1.1">4.1.1 Drop Down Menu</h5>
         <p>
         The drop down menu on the main program figure has the following choices. The details are fully explained in subsequent sections detailing each of the program windows.
         </p>
@@ -146,7 +151,7 @@
                 </ul>             . 
             </li>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h5 id="4.1.1">4.1.1 User Preferences Window</h5>
+        <h5 id="4.1.2">4.1.2 User Preferences Window</h5>
         <p>
             When User Preferences is selected from the Preferences Drop Down Menu on the main window, the window shown below opens. 
         </p>
@@ -157,7 +162,7 @@
             This window displays the currently selected user at the top of the window. The drop down box labeled "Select a User" can be selected to allow you to "Add a New User" or to select a user from the list displayed.  If a user is selected, that users preferences are displayed and can be edited if desired. After the editing is complete, select "Save" to save the changes. If the user selected is not the "Currently Selected User", then "Make Active" can be selected and the current user will be replaced with the new or changed user.  Also the selected user can be deleted if desired.  Depending on the task being performed, only certain of the action buttons along the bottom of the window are displayed or enabled.
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-        <h5 id="4.1.2">4.1.2 Program Preferences Window</h5>
+        <h5 id="4.1.3">4.1.3 Program Preferences Window</h5>
         <p>
             When Program Preferences is selected from the Preferences Drop Down Menu on the main window, the window shown below opens. 
         </p>
@@ -175,7 +180,7 @@
                 Audio - The volume of the audio output sent to the standard output can be set from 0 (mute) to 1 (maximum).
             </li>
             <li>
-                Flasher - There is a checkbox to enable the Flasher function. The default value is unchecked. If enabled, the Flasher window will open during any of the transmission modes and a visual display of the dots and dashes will be shown. The On and Off buttons allow the user to selecr these respective colors. Clicking either button will open a color selector to select a color.
+                Flasher - There is a checkbox to enable the Flasher function. The default value is unchecked. If enabled, the Flasher window will open during any of the transmission modes and a visual display of the dots and dashes will be shown. The Dock Flasher Window checkbox, when selected, will make the Flasher Window open just to the right of the Transmit * Window that calls the Flasher window.  The On and Off buttons allow the user to select these respective colors. Clicking either button will open a color selector to select a color.
             </li>
         </ul>
         <p>
@@ -184,30 +189,33 @@
 
        <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
        
-        <h5 id="4.1.3">4.1.3 Color Preferences Window</h5>
+        <h5 id="4.1.4">4.1.4 Color Preferences Window</h5>
         <p>
             When Color is selected on the Program Preferences Window, the window shown below opens. 
         </p>
-        <a href="screenshots/ColorWindow.png">
-            <img alt="A screenshot showing Color Preferences" src="screenshots/ColorWindow.png"/ width="400">
+        <a href="screenshots/ColorPreferencesWindow.png">
+            <img alt="A screenshot showing Color Preferences" src="screenshots/ColorPreferencesWindow.png"/ width="400">
         </a>
         <p>
-            x
+            This allows the user to costomize the windows colors across the entire program.
             </p>
         <ul>
             <li>
-                x
+                Windows Background - the color of the background of all windows.
             </li>
             <li>
-                x
+                Control Background - the color of the background of all of the action buttons like 'Save' or 'Exit'.
             </li>
             <li>
-                x
+                Control Foreground - the color of the text in all of the action buttons
+            </li>
+            <li>
+                Textbox Background - the color behind the text in any of the displayed transmitted text strings.
+            </li>
+            <li>
+                Transmit Background - the color behind the displayed transmitted character. 
             </li>
         </ul>
-        <p>
-            x
-        </p>    
 
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         
