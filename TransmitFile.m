@@ -176,17 +176,26 @@ function TransmitFile()
 %%  SelectInputFileCallback ---------------------------------------
     function SelectInputFileCallback(~, ~, ~)
 
-        % ProcessInputFile - Function lets operator select
-        % an input text file, converts it to upper case and
-        % removes excess spaces.
-        [textFileToSend, fileNameWithTag] = ...
-            PreprocessInputFile(userName);
+    %   Get the file from the operator
+        startDirectory = cd;
 
-        if fileNameWithTag == ' ' % No file was selected
+        [fileNameWithTag, fileDirectory] = uigetfile({'*.txt'},...
+            'Select a Text file',...
+            [startDirectory  '/UserData/' userName '/']);
+
+        if fileNameWithTag == 0  % User canceles
             return
         end
+    
+        filePath = [fileDirectory  fileNameWithTag];
+        
+    %   Load the file
+        inputFile = fileread(filePath);
 
-        % File was selected
+    %   Convert all text to upper
+        textFileToSend = upper(inputFile);
+
+    % Get things all set up to begin transmission
         firstXmitFile = 1;
         [~, baseFileName, ~] = fileparts(fileNameWithTag);
         windowTitle = ['Transmit from File:  ' fileNameWithTag];
@@ -257,12 +266,6 @@ function TransmitFile()
             end
         end % end while stopXmit == 0
         
-        % Save the audio file if it was generated
-        if saveAudioFile == 1
-            fileName = ['UserData/' userName '/' baseFileName '.wav'];
-            audiowrite(fileName, audioFileToRecord, sampleRate);
-        end
-
     % Stopped transmitting. Clear transmit character display of last
     % sent character
         if ishandle(XmitCharacterHandle)
@@ -302,6 +305,12 @@ function TransmitFile()
                 close(FlasherHandle);
             end
         end
+        
+     % Save the audio file if it was generated
+        if saveAudioFile == 1
+            fileName = ['UserData/' userName '/' baseFileName '.wav'];
+            audiowrite(fileName, audioFileToRecord, sampleRate);
+        end 
         
     % Finish closing
         CloseWindow()
