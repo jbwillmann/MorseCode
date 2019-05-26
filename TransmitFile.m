@@ -161,7 +161,7 @@ function TransmitFile()
         'Callback', @CloseRequestCallback ...
     );
 
-%%  Open Flasher window if enabled --------------------------------
+%% Open Flasher window if enabled ---------------------------------
     if glob.flasherEnabled == 1
         if glob.flasherDocking == 1
             winPosition = get(gcf, 'Position');
@@ -173,7 +173,7 @@ function TransmitFile()
         figure(TransmitFileHandle);
     end
 
-%%  SelectInputFileCallback ---------------------------------------
+%% SelectInputFileCallback ----------------------------------------
     function SelectInputFileCallback(~, ~, ~)
 
     %   Get the file from the operator
@@ -206,7 +206,7 @@ function TransmitFile()
 
     end % end SelectInputFileCallback
 
-%%  XmitFile ------------------------------------------------------
+%% XmitFile -------------------------------------------------------
     function XmitFile
     %Transmits the chosen file.
     % Setup some variables

@@ -80,7 +80,7 @@
             When the program is installed, it is initialized with a default user. The default user parameters cannot be changed. In order to customize the experience, new users must be added. Then the code speed, word speed and frequency can be set as the user desires. This is done through the user preferences drop-down menu on the main  program window. In addition, under the preferences menu is the ability to reset the program to its default state. This will erase any previously established users and their data and return the program to its original startup configuration.
         </p>
         <p>
-            When transmitting either a text file or the alphabet, the operator can pause the transmission at any time. When transmitting a file the user must first select a file to be transmitted. The transmission will stop when the end of the file is reached or the transmission is paused by the user. All text in the file is converted to upper case as it is being used and all extra spaces between words are removed. When Transmitting Alphabet the user can select the alphabet content, whether it is transmitted sequentially or randomly, or whether to split the transmitted characters in groups of fixed or random sizes.       
+            When transmitting either a text file or the alphabet, the operator can pause the transmission at any time. When transmitting a file the user must first select a file to be transmitted. The transmission will stop when the end of the file is reached or the transmission is paused by the user. All text in the file is converted to upper case as it is being used. When Transmitting Alphabet the user can select the alphabet content, whether it is transmitted sequentially or randomly, or whether to split the transmitted characters in groups of fixed or random sizes.       
         </p>
         <p>
             When Transmit Keyboard is selected, a window opens showing the keyboard entries and transmitted data. All input is converted to caps and the only special keys accepted are backspace, escape and F5. Backspace will delete the last keyboard input and Escape will clear all entries to start over. F5 is used to start and stop transmission. The imputed text is buffered and transmitted at the selected rates. 
@@ -264,7 +264,7 @@
             Before you start you must first select a text file to playback. Selecting 'Select Input File' box will open a file selector window in the selected users Data directory.  You can navigate to any folder to select a file.  Once a file is selected that file name will be displayed at the top of the window.
         </p>
         <p>
-            If you wish to save an audio file of the transmission, check the bod 'Save Audio File' before starting the transmission. After completion, that file will be saved in the users Data directory.
+            If you wish to save an audio file of the transmission, check the box 'Save Audio File' before starting the transmission. After completion, that file will be saved in the users Data directory.
         </p>
         <p>
             To begin transmission select 'Start Transmission' and the text will be transmitted and displayed in the text areas above. After the transmission starts, the 'Start Transmission' button will change to a 'Pause Transmission'.
@@ -384,10 +384,6 @@
                 <em>Morse.m:</em> This is the main program and should be run to start the application. When first run it initializes all necessaty files and opens the main window. There the user can modify or add users and select the mode of operation.
             </li>
 
-            <li>
-                <em>ProcessInputFile.m:</em> This function is called by TransmitFile.m and allows the user to select a .txt file for transmission. The program prepaires the file by converting all characters to upper case and removing extra spaces. 
-            </li>
-            
             <li>
                 <em>README.md:</em> The READMEme.md information file from the git repository.
             </li>
