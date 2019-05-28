@@ -11,6 +11,7 @@ function TransmitKeyboard
 
 % Setup Current User data
     activeUserIndex = glob.selectedUserIndex;
+    userName = glob.selectedUserName;
     
 % Set up workspace variables.
     audioBusy = 0;
@@ -157,7 +158,7 @@ function TransmitKeyboard
         'Callback', @CloseRequestCallback ...
     );
 
-%%  Open Flasher window if enabled --------------------------------
+%% Open Flasher window if enabled ---------------------------------
     if glob.flasherEnabled == 1
         if glob.flasherDocking == 1
             winPosition = get(gcf, 'Position');
@@ -314,15 +315,29 @@ TxLoop()
                   
 %% CloseRequestCallback -------------------------------------------
     function CloseRequestCallback(~, ~)
-        % Close Flasher window if enabled
+        
+    % Close Flasher window if enabled
         if glob.flasherEnabled == 1
             if ishandle(FlasherHandle)
                 pause(.2);
                 close(FlasherHandle);
             end
         end
-           
-        CloseWindow();
+        
+     % Write input text to .txt file if enabled   
+        if glob.saveTextOnExit == 1
+            baseFileName = 'EnteredText';
+            startDirectory = cd;           
+            fileName = [startDirectory '\UserData\'...
+                userName '\' baseFileName '.txt'];
+            fid = fopen(fileName,'w');
+            fprintf(fid, sentKbdString);
+            fclose(fid);
+        end
+     
+    % Finish up
+        CloseWindow()
+        
     end % end CloseRequestCallback
 
 end % end TransmitKeyboard

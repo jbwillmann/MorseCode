@@ -9,11 +9,12 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     defaultFrequency = 400;
 
 % "Global" variables
-    glob.saveWindows = 1;       % 1 to save window position on close,
-    glob.scaleFactor = 1.;      % Scale factor for all windows,
-    glob.volume = .75;          % Audio volume
-    glob.displayFlasher = 1;    % Display Flasher Window
-    glob.selectedUserIndex = 2;      % set to default user index,
+    glob.saveWindows = 1;           % Save window position on close.
+    glob.saveTextOnExit = 1;        % Save transmitted text on exit.
+    glob.scaleFactor = 1.;          % Scale factor for all windows.
+    glob.volume = .75;              % Audio volume.
+    glob.displayFlasher = 1;        % Display Flasher Window.
+    glob.selectedUserIndex = 2;     % set to default user index.
     glob.selectedUserName = 'DefaultUser';
     glob.dotTime = round(1./defaultCodeSpeed,2);
     glob.flasherEnabled = 0;    % Off by default, 1 to enable
@@ -95,7 +96,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
         round(TextFont,1); round(TextHeight,1)};   
     windowsPrefs(1:8,10) = {'Code Table'; 1; WindowLeft+24;...
         WindowBottom; round(1*WindowWidth); round(1*WindowHeight);...
-        round(TextFont,1); round(TextHeight,1)};  
+        round(TextFont-2,1); round(TextHeight,1)};  
     windowsPrefs(1:8,11) = {'Help'; 1; WindowLeft+27;...
         WindowBottom; round(1*WindowWidth); round(1*WindowHeight);...
         round(TextFont,1); round(TextHeight,1)};     

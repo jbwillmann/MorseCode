@@ -10,13 +10,15 @@ function TransmitAlphabet()
     load('ProgramData/CodeTableFile.mat', 'codeTable');
 
 % Setup Current User data
-    activeUserIndex = glob.selectedUserIndex;  
+    activeUserIndex = glob.selectedUserIndex;
+    userName = glob.selectedUserName;
     
 % Set up workspace variables.
     alphaPrefs = allUsersPrefs{5,activeUserIndex};
     space = 0;
     stopXmit = 0;
     firstTime = 0;
+    sentString = [];
     
 % Set up alphabet preferences
     switch alphaPrefs.include
@@ -183,7 +185,7 @@ function TransmitAlphabet()
         'Callback', @CloseRequestCallback ...
     );
 
-%%  Open Flasher window if enabled --------------------------------
+%% Open Flasher window if enabled ---------------------------------
    if glob.flasherEnabled == 1
         if glob.flasherDocking == 1
             winPosition = get(gcf, 'Position');
@@ -195,7 +197,7 @@ function TransmitAlphabet()
         figure(AlphabetWinHandle);
     end
 
-%%  Xmit Alphabet Processing --------------------------------------
+%% Xmit Alphabet Processing ---------------------------------------
 % This function is called by the StartStopCallback when the 
 % Start Transmission button is selected
     function XmitAlphabet
@@ -205,7 +207,7 @@ function TransmitAlphabet()
         groupMin = alphaPrefs.min;      % group minimum size
         groupMax = alphaPrefs.max;      % group maximum size
 
-        persistent characterIndex sentString groupCount 
+        persistent characterIndex  groupCount 
         
         if firstXmitAlpha == 0
             sentString = [];
@@ -288,7 +290,7 @@ function TransmitAlphabet()
         
     end % end XmitAlphabet
 
-%%  SelectModeCallback --------------------------------------------
+%% SelectModeCallback ---------------------------------------------
     function SelectModeCallback(~, ~, ~)
            AlphabetPreferences(AlphabetWinHandle);
     end % end SelectModeCallback
@@ -317,6 +319,17 @@ function TransmitAlphabet()
                 close(FlasherHandle);
             end
         end
+        
+    % Write input text to .txt file if enabled   
+        if glob.saveTextOnExit == 1
+            baseFileName = 'AlphabetText';
+            startDirectory = cd;           
+            fileName = [startDirectory '\UserData\'...
+                userName '\' baseFileName '.txt'];
+            fid = fopen(fileName,'w');
+            fprintf(fid, sentString);
+            fclose(fid);
+        end  
         
     % Finish closing
         CloseWindow()
