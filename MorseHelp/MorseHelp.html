@@ -174,7 +174,10 @@
             </p>
         <ul>
             <li>
-                Windows - There is a checkbox to select 'Save Window Position on Exit'. The default is checked. Once you like the position of windows and have saved those windows, then those windows will reopen at that position. If desired, after windows are positioned to your liking, the box can be unchecked to prevent further changes. The 'Scale Factor' is set to 1 by default. It is currently not used.
+                Windows - There is a checkbox to select 'Save Window Position on Exit'. The default is checked. Once you like the position of windows and have saved those windows, then those windows will reopen at that position. If desired, after windows are positioned to your liking, the box can be unchecked to prevent further changes.
+            </li>
+            <li>
+                Transmitted Data - There is a checkbox to select 'Save Transmitted Data on Exit'. The default is checked. Yhis allows the user to save a copy of the transmitted data in a text file. The file is saved in the users data directory when ever the user closes either the Transmit Alphabet or Transmit keyboard window. This allows the yser to compare the code copied with the code transmitted.
             </li>
             <li>
                 Audio - The volume of the audio output sent to the standard output can be set from 0 (mute) to 1 (maximum).
@@ -357,10 +360,6 @@
             </li>
             
             <li>
-                <em>FlasherPreferences.m:</em> This function allows the user to select the preferences for the Flasher function.
-            </li>
-            
-            <li>
                 <em>FlasherTask.m:</em> This function controls the Flasher function and controls the display in the Flasher Window.
             </li>
             
@@ -384,6 +383,11 @@
                 <em>Morse.m:</em> This is the main program and should be run to start the application. When first run it initializes all necessaty files and opens the main window. There the user can modify or add users and select the mode of operation.
             </li>
 
+                         
+            <li>
+                <em>ProgramPreferences.m:</em> The ProgramPreferences function is called when the user selects Program Preferences on the main figure menu. The user can customize a number of features of the program from this window.
+            </li>  
+            
             <li>
                 <em>README.md:</em> The READMEme.md information file from the git repository.
             </li>
@@ -415,9 +419,9 @@
             <li>
                 <em>WavePlay.m:</em> This function opens a directory window allowing the user to select a .wav file. If the user selects a file, it is played.
             </li>
-              
+
             <li>
-                <em>WindowPreferences.m:</em> The WindowPreferences function is called when the user selects Window Preferences on the main figure menu. The user can select to save current window positions on exit.This is the default.
+                <em>WindowsColors.m:</em> The WindowsColors function is called when the user selects Colors on the Program Preferences window. The user can customize the colors usen in all of the program windows.
             </li>  
                
         </ul>
