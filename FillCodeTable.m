@@ -91,4 +91,3 @@ function wavReturn = MakeWave(time, amp, freq, samplesPerCycle )
     end
     wavReturn = sig ;
 end % end MakeWave Function
-

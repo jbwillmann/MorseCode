@@ -1,5 +1,7 @@
 function DisplayCodeTable()
 % This function displays the built in Code Table
+
+%% Set up the variables -------------------------------------------
 % Load the preferences file.
     load('ProgramData/PreferencesFile.mat', 'allUsersPrefs',...
         'windowsPrefs', 'glob');
@@ -14,7 +16,7 @@ function DisplayCodeTable()
     windowHeight = windowsPrefs{6,10};
     textFont = windowsPrefs{7,10};      
     
-% Create the figure to display the table
+%% Create the figure to display the table -------------------------
     figure(...
         'Units', 'Characters',...
         'CloseRequestFcn',@CloseWindow,...
@@ -26,7 +28,7 @@ function DisplayCodeTable()
         'Name', 'Code Table'...
     );
 
-%   Build the data cell array to display
+%%   Build the data cell array to display -------------------------
     DisplayData = cell(59,5);
     for i = 1:59
         for j = 1:5
@@ -53,7 +55,7 @@ function DisplayCodeTable()
     DisplayData(:,2) = [];
     DisplayData(:,2) = [];
 
-% Build the table
+%% Build the table ------------------------------------------------
 % Note that uitable uses pixels for the column widths
     columnNames = {'Character' 'Code Name' 'Dots and Dashes'};
     width = 1.8*windowWidth;

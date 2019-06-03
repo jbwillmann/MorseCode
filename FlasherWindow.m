@@ -35,4 +35,3 @@ function  FlasherHandle = FlasherWindow(winPosition)
     );
 
 end % end Flasher
-

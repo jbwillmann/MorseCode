@@ -322,17 +322,22 @@ function TransmitAlphabet()
         
     % Write input text to .txt file if enabled   
         if glob.saveTextOnExit == 1
-            baseFileName = 'AlphabetText';
+            defaultFileName = 'AlphabetText';
             startDirectory = cd;           
-            fileName = [startDirectory '\UserData\'...
-                userName '\' baseFileName '.txt'];
-            fid = fopen(fileName,'w');
-            fprintf(fid, sentString);
-            fclose(fid);
+            [fileNameWithTag, fileDirectory] = uiputfile({'*.txt'},...
+            'Save the Text file',...
+            [startDirectory  '\UserData\' userName '\' defaultFileName]);
+            if fileDirectory ~= 0
+                fileName = [fileDirectory '\' fileNameWithTag];
+                fid = fopen(fileName,'w');
+                fprintf(fid, sentString);
+                fclose(fid);
+            end             
         end  
         
     % Finish closing
         CloseWindow()
+        
     end % end CloseRequestCallback
 
 end % end TransmitAlphabet

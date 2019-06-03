@@ -326,13 +326,17 @@ TxLoop()
         
      % Write input text to .txt file if enabled   
         if glob.saveTextOnExit == 1
-            baseFileName = 'EnteredText';
+            defaultFileName = 'EnteredText';
             startDirectory = cd;           
-            fileName = [startDirectory '\UserData\'...
-                userName '\' baseFileName '.txt'];
-            fid = fopen(fileName,'w');
-            fprintf(fid, sentKbdString);
-            fclose(fid);
+            [fileNameWithTag, fileDirectory] = uiputfile({'*.txt'},...
+            'Save the Text file',...
+            [startDirectory  '\UserData\' userName '\' defaultFileName]);
+            if fileDirectory ~= 0
+                fileName = [fileDirectory '\' fileNameWithTag];
+                fid = fopen(fileName,'w');
+                fprintf(fid, sentKbdString);
+                fclose(fid);
+            end    
         end
      
     % Finish up

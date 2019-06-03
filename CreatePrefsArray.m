@@ -1,16 +1,16 @@
 function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
-% This function creates the allUsersPrefs array, windowsPrefs and the
-% alphaPrefs.  Also some "global" variables which need to be persistent
-% and saved between sessions.
+% This function creates the allUsersPrefs array, windowsPrefs ----
+% and the alphaPrefs.  Also some "global" variables which need 
+% to be persistentand saved between sessions.
 
-% Values for the default user
+%% Values for the default user -----------------------------------
     defaultCodeSpeed = 12;
     defaultWordSpeed = 6;
     defaultFrequency = 400;
 
-% "Global" variables
+%% "Global" glob variables ---------------------------------------
     glob.saveWindows = 1;           % Save window position on close.
-    glob.saveTextOnExit = 1;        % Save transmitted text on exit.
+    glob.saveTextOnExit = 0;        % Save transmitted text on exit.
     glob.scaleFactor = 1.;          % Scale factor for all windows.
     glob.volume = .75;              % Audio volume.
     glob.displayFlasher = 1;        % Display Flasher Window.
@@ -27,7 +27,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     glob.figureColor = [.99 .99 .99];           % White
     glob.xmitBackgroundColor = [.80 .95 .80];   % Light Green
 
-% Create alphabet transmit default preferences
+%% Create alphabet transmit default preferences ------------------
     % 1 = Alphabet=26, 2 = +Numbers = 36, 3 = +Punctuation = 53,
     % 4 = +Special Characters = 59
     alphaPrefs.include = 1;     % 1 = Alphabet only    
@@ -36,7 +36,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     alphaPrefs.min = 0;         % group minimum size
     alphaPrefs.max = 0;         % group maximum size
     
-% Create allUsersPrefs cell array
+%% Create allUsersPrefs cell array -------------------------------
     allUsersPrefs = cell(9,2);
 
     allUsersPrefs(1:9,1) = {'Name';'CodeSpeed';'WordSpeed';'Frequency';...
@@ -48,7 +48,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
         'AudioFile1.wav';'FileUserCopied1.txt';...
         'KeyboardInFile1.txt';1};
         
-% Get some GUI windows parameters
+%% Get some GUI windows parameters -------------------------------
 % First get the monitor size
     set(0,'Units','Character');
     Sc = get(0, 'ScreenSize');          % Screen size in Characters
@@ -65,7 +65,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
     TextFont = round(3*size/14,1);      % Text Font
     TextHeight = round(3*size/126,1);   % Text Height
 
-% Create windowsPrefs cell array
+%% Create windowsPrefs cell array  -------------------------------
     windowsPrefs = cell(8,14);    
     windowsPrefs(1:8,1) = {'WindowName'; 'ScaleFactor';...
         'Left'; 'Bottom'; 'Width'; 'Height';...
@@ -108,4 +108,3 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
         round(TextFont,1); round(TextHeight,1)}; 
 
 end % end CreatePrefsArray
-
