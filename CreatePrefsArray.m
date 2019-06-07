@@ -11,6 +11,7 @@ function [allUsersPrefs, windowsPrefs, glob] = CreatePrefsArray()
 %% "Global" glob variables ---------------------------------------
     glob.saveWindows = 1;           % Save window position on close.
     glob.saveTextOnExit = 0;        % Save transmitted text on exit.
+    glob.saveAudioOnExit = 0;       % Save transmitted audio on exit.
     glob.scaleFactor = 1.;          % Scale factor for all windows.
     glob.volume = .75;              % Audio volume.
     glob.displayFlasher = 1;        % Display Flasher Window.
