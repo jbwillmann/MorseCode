@@ -317,8 +317,10 @@ function TransmitKeyboard
         end
         
         % Display the character in the keyboard input display
-        if characterInCount == 1    % First one
+        if characterInCount == 1    % None in the buffer.
             displayInputString = typedCharacter;
+            % Make sure we are not transmitting the previous character.
+            % Wait until it is finished.
             for ind = 1:20
                 if audioBusy == 0
                     set(KbdStringHandle, 'string', displayInputString);
