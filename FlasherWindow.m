@@ -1,6 +1,6 @@
 function  FlasherHandle = FlasherWindow(winPosition)
 %FlasherWindow A window to visually  display transmitted code
-%   Detailed explanation goes here
+
 %% Initialize the user variables ----------------------------------
 
 % Load the PreferencesFile.mat file from the ProgramData directory.
@@ -9,12 +9,12 @@ function  FlasherHandle = FlasherWindow(winPosition)
        
 %% Set up main user interface  ------------------------------------
 % Setup GUI parameters 
-    if winPosition == 0
+    if winPosition == 0     % Use saved Flasher window position
         windowLeft = windowsPrefs{3,13};
         windowBottom = windowsPrefs{4,13};
         windowWidth = windowsPrefs{5,13};
         windowHeight =  windowsPrefs{6,13};
-    else
+    else   % Dock Flasher window to right of calling window 
         windowLeft = winPosition(1) + winPosition(3) + 1;
         windowBottom = winPosition(2);
         windowWidth = 3*winPosition(4);

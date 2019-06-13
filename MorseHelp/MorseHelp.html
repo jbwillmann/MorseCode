@@ -54,7 +54,7 @@
         <ul>
             <li>Completely redesigned user interface.</li>
             <li>Improved audio sound.</li>
-            <li>Added a visual display if the dots and dashes in sync with the audio.</li>
+            <li>Added a visual display of the dots and dashes in sync with the audio.</li>
             <li>Multiple users with preferences saved between sessions.</li>
             <li>Automatically saving new window positions upon closing.</li>
             <li>Consistent naming conventions for variables, functions and callbacks.</li>
@@ -77,7 +77,7 @@
              The code speed (rate of dots and dashes), word speed (period between words) and audio frequency of transmitted dots and dashes can be set separately for each user profile. These parameters can be adjusted through the Preferences drop down menu on the main window.
         </p>
         <p>
-            When the program is installed, it is initialized with a default user. The default user parameters cannot be changed. In order to customize the experience, new users must be added. Then the code speed, word speed and frequency can be set as the user desires. This is done through the user preferences drop-down menu on the main  program window. In addition, under the preferences menu is the ability to reset the program to its default state. This will erase any previously established users and their data and return the program to its original startup configuration.
+            When the program is first installed, it is initialized with a default user. The default user parameters cannot be changed. In order to customize the experience, new users must be added. Then the code speed, word speed and frequency can be set as the user desires. This is done through the user preferences drop-down menu on the main  program window. In addition, under the preferences menu is the ability to reset the program to its default state. This will erase any previously established users and their data and return the program to its original startup configuration.
         </p>
         <p>
             When transmitting either a text file or the alphabet, the operator can pause the transmission at any time. When transmitting a file the user must first select a file to be transmitted. The transmission will stop when the end of the file is reached or the transmission is paused by the user. All text in the file is converted to upper case as it is being used. When Transmitting Alphabet the user can select the alphabet content, whether it is transmitted sequentially or randomly, or whether to split the transmitted characters in groups of fixed or random sizes.       
@@ -197,7 +197,7 @@
             <img alt="A screenshot showing Color Preferences" src="screenshots/ColorPreferencesWindow.png"/ width="400">
         </a>
         <p>
-            This allows the user to costomize the windows colors across the entire program.
+            This allows the user to customize the windows colors across the entire program.
             </p>
         <ul>
             <li>
@@ -233,7 +233,7 @@
             Selecting the Start Transmission button will begin the transmission. The Start Transmission will change into a Pause Transmission button that can selected to pause the transmission. Selecting Exit at any time will stop the transmission and close the window
         </p>
         <p>
-            There is a checkbox labeled "Save text file on exit" at the bottom of the window. If you check this box, then the transmitted text that appears in the "String Being Transmitted" can be saved to a file of your choice when the window is closed. This provides a record of the transmitted text to possiblly compare with the text you have copied.
+            There is a checkbox labeled "Save text file on exit" at the bottom of the window. If you check this box, then the transmitted text that appears in the "String Being Transmitted" can be saved to a file of your choice when the window is closed. This provides a record of the transmitted text to possibly compare with the text you have copied.
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         <h5 id="4.2.1">4.2.1 Alphabet Preferences Window</h5>
@@ -291,7 +291,7 @@
             As you are typing the input appears in the 'Keyboard Input' If transmission is on, the characters will move from that string to the 'Character Being Transmitted display area along with the name of the character immediately below. At the same time the character will go to the 'String Being Transmitted' area where all of the characters remain until the window is closed or the window is cleared by entering escape.  If you type ahead of the transmission, the characters in the 'Keyboard Input' can be edited using the delete key and retyping.
         </p> 
         <p>
-            There is a checkbox labeled "Save text file on exit" at the bottom of the window. If you check this box, then the transmitted text that appears in the "String Being Transmitted" can be saved to a file of your choice when the window is closed. This provides a record of the transmitted text to possiblly compare with the text you have copied.
+            There is a checkbox labeled "Save text file on exit" at the bottom of the window. If you check this box, then the transmitted text that appears in the "String Being Transmitted" can be saved to a file of your choice when the window is closed. This provides a record of the transmitted text to possibly compare with the text you have copied.
         </p>
         <p>------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <h3 id="5.0">5.0 File and Program Structure</h3>
@@ -383,7 +383,7 @@
             </li>
             
             <li>
-                <em>Morse.m:</em> This is the main program and should be run to start the application. When first run it initializes all necessaty files and opens the main window. There the user can modify or add users and select the mode of operation.
+                <em>Morse.m:</em> This is the main program and should be run to start the application. When first run it initializes all necessary files and opens the main window. There the user can modify or add users and select the mode of operation.
             </li>
 
                          
@@ -396,7 +396,7 @@
             </li>
             
             <li>
-                <em>startup.m:</em> a file that runs automatically on startup. Currently it is just a placeholder in the event the user wished to add some initillation functionality.
+                <em>startup.m:</em> a file that runs automatically on startup. Currently it is just a placeholder in the event the user wished to add some installation functionality.
             </li>
             
             <li>
@@ -424,23 +424,24 @@
             </li>
 
             <li>
-                <em>WindowsColors.m:</em> The WindowsColors function is called when the user selects Colors on the Program Preferences window. The user can customize the colors usen in all of the program windows.
+                <em>WindowsColors.m:</em> The WindowsColors function is called when the user selects Colors on the Program Preferences window. The user can customize the colors used in all of the program windows.
             </li>  
                
         </ul>
 
         <h3 id="6.0">6.0 Design of the Program</h3>
         <p>
-            The core of the program is the CodeTable. The function BuildCodeTable creates a 60x4 cell array where the first 3 columns are text and contain the character, dots and dashes, dits and daws. The fourth column is reserved for a wave file that represents the Morse code for that character at the selected speed and audio frequency.
+            The core of the program is the CodeTable. The function BuildCodeTable creates a 60x6 cell array where the first 5 columns are text and contain the character, dots and dashes, dits and daws, character name, and the display characters when the code table is displayed in help. The sixth column is reserved for a wave file that represents the Morse code for that character at the selected speed and audio frequency.
         </p>
        <p>
-            After the GUI is constricted, to initialize the program the function FillCodeTable is called. This function first calls BuildCodeTable to populate the first three columns of the CodeTable. Then this function builds the dots dashes and spaces for the selected code and word speed by calling the function MakeWave to build the wave file for a dot, dash and spaces. Then MakeCharacter is called to build the wave file for each character. This result is stored in the fourth column of the CodeTable for each of the character entries in the table.
+            After the GUI is constricted, to initialize the program the function FillCodeTable is called. This function first calls BuildCodeTable to populate the first five columns of the CodeTable. Then this function builds the dots dashes and spaces for the selected code and word speed by calling the function MakeWave to build the wave file for a dot, dash and spaces. Then MakeCharacter is called to build the wave file for each character. This result is stored in the sixth column of the CodeTable for each of the character entries in the table.
         </p>
         <p>
             When either the speed or frequency is changed, this process is repeated so there is a new CodeTable constructed to use with the new settings. The process of transmission consist of taking each character of the input stream and sending the wave file associated with that character to the standard audio output using waveplay. Because waveplay does not return until the sample is sent, when sending the alphabet or a loaded text string, the function XmitAlphabet in TransmitAlphabet.m and XmitFile in TransmitFile.m just loop through all of the characters until completed.
         </p>
         <p>
-            There is a function called the Flasher task. If it is enabled via the Flasher Preferences, then whenever any of the three transmission modes are chosen, a Flasher window will also open. In this window will be a visual display of the transmitted tones. The colors of the on or off display can be selected also through the Flasher Preferences. The flasher window is the only window in the application that can be resized. Like all windows in the application, its current position and size will be saved on closing.
+            There is a function called the Flasher task. If it is enabled via the Program Preferences, then whenever any of the three transmission modes are chosen, a Flasher window will also open. In this window will be a visual display of the transmitted tones. The colors of the on or off display can be selected also through the Flasher Preferences. The flasher window is the only window in the application that can be resized. Like all windows in the application, its current position and size will be saved on closing. In addition. the Flasher window can be docked to the right side of the selected Transmit window. This behavior can be set from the program Preferences Window.
+                
         </p>
         <p>
             Transmitting from the keyboard is a bit more complicated than the other two modes. Calling TransmitAlphabet.m opens that window, activates the KeyPressFunction and starts a while loop which monitors the keyboard input stream to process all typed characters. There are 3 special characters the program uses for control. F5 is used to toggle transmission on or off. Escape is used to clear and reset the entries. Backspace is used to clear a keyboard entry while it is in the keyboard entry buffer. If any other character is typed that is not a valid Morse character, the entry is discarded.

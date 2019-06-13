@@ -77,7 +77,7 @@ function userAction = WarningWindow(messageString)
 % Wait for the operator to respond before returning
     uiwait(WarningHandle);
 
-%% ActionCallback Callback  
+%% ActionCallback Callback ----------------------------------------
     function ActionCallback(~, ~, num)
         % Define the return argument
         switch num

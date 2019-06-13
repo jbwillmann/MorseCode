@@ -10,13 +10,13 @@ function FlasherTask(FlasherHandle, dotTime, codeGroup)
     
 %% Initialize the user variables ----------------------------------
 % Load the PreferencesFile.mat file from the ProgramData directory.
-    load('ProgramData/PreferencesFile.mat',...
-        'allUsersPrefs', 'windowsPrefs', 'glob');
-
+    load('ProgramData/PreferencesFile.mat','glob');
+% Set up other variables
     dotTime = dotTime+.02;
     numberCharacters = size(codeGroup, 2);
     characterCount = 1;
     isSpace = 0;
+% Get the first digit
     firstDigit = codeGroup(characterCount);
         switch firstDigit
             case '.'
