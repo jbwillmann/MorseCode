@@ -49,7 +49,7 @@
 
 
         <p>
-            I originally published this program on the MatLab side in 2009. This version, as of April 2019, is a major rewrite with many new features. A few of the more notable changes are summarized below:
+            I originally published this program on the MatLab site in 2009. This version, as of July 2019, is a major rewrite with many new features. A few of the more notable changes are summarized below:
         </p>
         <ul>
             <li>Completely redesigned user interface.</li>
@@ -74,7 +74,7 @@
              <li>Transmit a recorded .wav file.</li>
          </ul>   
          <p> 
-             The code speed (rate of dots and dashes), word speed (period between words) and audio frequency of transmitted dots and dashes can be set separately for each user profile. These parameters can be adjusted through the Preferences drop down menu on the main window.
+             Multiple users can be defined each with their own parameters. The code speed (rate of dots and dashes), word speed (period between words) and audio frequency of transmitted dots and dashes can be set separately for each user . These parameters can be adjusted through the Preferences drop down menu on the main Morse program window.
         </p>
         <p>
             When the program is first installed, it is initialized with a default user. The default user parameters cannot be changed. In order to customize the experience, new users must be added. Then the code speed, word speed and frequency can be set as the user desires. This is done through the user preferences drop-down menu on the main  program window. In addition, under the preferences menu is the ability to reset the program to its default state. This will erase any previously established users and their data and return the program to its original startup configuration.
@@ -125,7 +125,7 @@
                     <li>UserPreferences - Opens the User Preferences Window to allow the user to make changes to a user, add a user, delete a user or select a user to be the active user.
                     </li>
                     <li>
-                    Program Preferences - Opens the Program Preferences Window to allow the user to manage a number of program preferences and options. Also there are a number of screens and objedts whose color can be customized by the user.
+                    Program Preferences - Opens the Program Preferences Window to allow the user to manage a number of program preferences and options. Also there are a number of screens and objects whose color can be customized by the user.
                     </li>
                     <li>
                     Reset All Preferences - Deletes all added users and returns the program to its initial state.
@@ -339,7 +339,7 @@
             </li>
             
             <li>
-                <em>AlphabetPreferences.m:</em> This function is called from the TransmitAlphabet function with the handle to the TransmitAlphabet window. Here the user can make changes to the AlphabetTransmit preferences.  If changes are made, the preferences files are updated and the TransmitAlphaber window is closed and then reopened with the changes.
+                <em>AlphabetPreferences.m:</em> This function is called from the TransmitAlphabet function with the handle to the TransmitAlphabet window. Here the user can make changes to the Alphabet preferences.  If changes are made, the preferences files are updated and the TransmitAlphabet window is closed and then reopened with the changes.
             </li>
             
             <li>
@@ -392,7 +392,7 @@
             </li>  
             
             <li>
-                <em>README.md:</em> The READMEme.md information file from the git repository.
+                <em>README.md:</em> The README.md information file from the git repository. This should contain information on updates and changes.
             </li>
             
             <li>
@@ -447,7 +447,7 @@
             Transmitting from the keyboard is a bit more complicated than the other two modes. Calling TransmitAlphabet.m opens that window, activates the KeyPressFunction and starts a while loop which monitors the keyboard input stream to process all typed characters. There are 3 special characters the program uses for control. F5 is used to toggle transmission on or off. Escape is used to clear and reset the entries. Backspace is used to clear a keyboard entry while it is in the keyboard entry buffer. If any other character is typed that is not a valid Morse character, the entry is discarded.
             
         </p>
-            The  input character is put into a 4xn cell array InputString. In row 1 is the character, row 2 is the wave file for that character and in row 3 is the name of the character. Row 4 contains the codegroup, the text string of the dots and dashes, used by the flasher task if it is enabled. All the while this input is going on, the while loop is looking at the InputString to see if there is a new character. It is transmitted if transmission is enabled. This continues until it runs out of characters or transmission is manually stopped.
+            The  input character is put into a 4xn cell array InputString. In row 1 is the character, row 2 is the wave file for that character and in row 3 is the name of the character. Row 4 contains the codeGroup, the text string of the dots and dashes, used by the flasher task if it is enabled. All the while this input is going on, the while loop is looking at the InputString to see if there is a new character. It is transmitted if transmission is enabled. This continues until it runs out of characters or transmission is manually stopped.
         <p>
             
         </p>
