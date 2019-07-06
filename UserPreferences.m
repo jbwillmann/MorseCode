@@ -313,6 +313,7 @@ function UpdateUserCallback(src, ~, num)
                 WarningWindow(numericWarning1);
                 set(src,'String',' ');
                 inputCount(2) = 0;
+                uicontrol(CodeSpeedHandle);
                 return
             end
             inputCount(2) = 1;
@@ -325,9 +326,10 @@ function UpdateUserCallback(src, ~, num)
         case 3  % Word Speed
             wordSpeed = str2double(get(src,'String'));
             if isnan(wordSpeed)
-                WarningWindow(windowsPrefs,numericWarning1);
+                WarningWindow(numericWarning1);
                 set(src,'String',' ');
                 inputCount(3) = 0;
+                uicontrol(WordSpeedHandle);
                 return
             end
             inputCount(3) = 1;
@@ -341,9 +343,10 @@ function UpdateUserCallback(src, ~, num)
         case 4  % Frequency
             frequency = str2double(get(src,'String'));
             if isnan(frequency)
-                WarningWindow(windowsPrefs,numericWarning1);
+                WarningWindow(numericWarning1);
                 set(src,'String',' ');
                 inputCount(4) = 0;
+                uicontrol(FrequencyHandle);
                 return
             end
             inputCount(4) = 1;

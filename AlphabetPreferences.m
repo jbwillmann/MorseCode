@@ -221,15 +221,29 @@ function AlphabetPreferences(AlphabetWinHandle)
                 
             case 4  % Group Min size
                 groupMin = str2double(get(src,'String'));
+                if isnan(groupMin)
+                    groupMin = 1;
+                    set(src,'String','1');
+                end
                 
             case 5  % Group Max size
                 groupMax = str2double(get(src,'String'));
+                if isnan(groupMax)
+                    groupMax = 5;
+                    set(src,'String','5');
+                end
                 
             case 6  % Save
                 alphaPrefs.include = alphaSelect;  
                 alphaPrefs.format = sequentialSelect;     
                 alphaPrefs.group = groupSelect;
-                alphaPrefs.min = groupMin;   
+                if groupMin < 1
+                    groupMin = 1;
+                end
+                alphaPrefs.min = groupMin;  
+                if groupMax < groupMin
+                    groupMax = groupMin;
+                end
                 alphaPrefs.max = groupMax;
                 allUsersPrefs{5, activeUserIndex} = alphaPrefs;
                 
